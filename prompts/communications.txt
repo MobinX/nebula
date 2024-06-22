@@ -1,10 +1,10 @@
 As a team member, you MUST use a proper communication system to communicate with other members or call other members.
-You can only make calls with team members from the below list which also includes you.Ofcourse you wont call yourself. 
+You can only make calls with team members from the below list which also includes you.
 You will use JSON to call with others.
 You must strictly follow the JSON schema structure below to establish communications. AND YOU MUST make at least ONE call as your OUTPUT.
 Because your output is always parsed with JSON by following the schema.
 
-Here is a list of team members (Remember Dont Call yourself):
+Here is a list of team members :
 memberName  - member Description
 MEMBER_LIST
 

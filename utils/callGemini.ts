@@ -45,9 +45,9 @@ export const generateGemini = async (history: ChatHistory[]) => {
         const apires = await fetch("https://x.mobin.workers.dev/api/key")
         const apikey = (await apires.json()).apikey;
         // console.log(apikey)
-        console.log("[callGemini] History: ");
-        console.log(util.inspect(history, { showHidden: false, depth: null }));
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apikey}`, {
+        // console.log("[callGemini] History: ");
+        // console.log(util.inspect(history, { showHidden: false, depth: null }));
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${apikey}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -83,8 +83,8 @@ export const generateGemini = async (history: ChatHistory[]) => {
 
 
         const data = await response.json();
-        console.log("[callGemini] Data: ");
-        console.log(util.inspect(data, { showHidden: false, depth: null }));
+        // console.log("[callGemini] Data: ");
+        // console.log(util.inspect(data, { showHidden: false, depth: null }));
         if (data.candidates) {
             return (JSON.parse(data.candidates[0].content.parts[0].text));
         }
