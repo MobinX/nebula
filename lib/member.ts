@@ -45,7 +45,7 @@ export const Member = async (memeberInfo: MemberType): Promise<MemberOutput> => 
         role: memeberInfo.role,
         roleDescription: memeberInfo.roleDescription,
         setUpCommunication: (comPromt: string) => {
-            memberChatHistory.add("user", comPromt + "\n" + systemPrompt);
+            memberChatHistory.add("user", systemPrompt + "\n" + comPromt );
 
         },
         call: async (msg: any) => {
