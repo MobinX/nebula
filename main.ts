@@ -32,7 +32,7 @@ let memberInfo = [
     {
         role: "Team Represntative",
         roleDescription: "The team representative who is responsible for the team communication and coordination with client and send orders to the other team members",
-        systemPrompt: "Y",
+        systemPrompt: "Your work is to communicate with the client and send orders to the other team members.they may communicate with you for any help or information.if need , you may ask for help from the client or other team members.MUST use communication schema for any calling to team member or client.",
         promptSrc: "text"
     },
     {
