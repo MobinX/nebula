@@ -91,7 +91,7 @@ export const client = async (rl: any): Promise<MemberOutput> => {
                 memberChatHistory.add("user", `${from} has sent you a msg: ${msg}`);
                 const response: any = await prompt(rl, '${from} has sent you a msg: ${msg}');
                 memberChatHistory.add("model", response);
-                return { calls: [{ to: "team-represntative", msg: response }] };
+                return { calls: [{ tergetCaller: "team-represntative", msg: response }] };
             } catch (e) {
                 console.log("[Member] Error in member call: ", e);
                 throw e;

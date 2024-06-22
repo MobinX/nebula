@@ -47,7 +47,7 @@ export const generateGemini = async (history: ChatHistory[]) => {
         // console.log(apikey)
         // console.log("[callGemini] History: ");
         // console.log(util.inspect(history, { showHidden: false, depth: null }));
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${apikey}`, {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apikey}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

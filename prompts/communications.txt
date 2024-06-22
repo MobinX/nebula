@@ -12,7 +12,7 @@ Here is your response scheme
 
 interface callType {
     calls: [        // you can make multiple calls with different members in one go with this array
-        to: string, // memberName you want to call must match name from the list of members.Dont make any typo or dont change the case of the memberNames. as it is parsed by json.so only call with the appropriete member name
+        tergetCaller: string, // memberName you want to call must match name from the list of members.Dont make any typo or dont change the case of the memberNames. as it is parsed by json.so only call with the appropriete member name
         msg: any    // message you want to send to the member
     ]
 }

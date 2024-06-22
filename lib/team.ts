@@ -61,14 +61,14 @@ export class Team {
                     return;
 
                 }
-                if (response.calls[0].to == undefined || response.calls[0].msg == undefined) {
+                if (response.calls[0].tergetCaller == undefined || response.calls[0].msg == undefined) {
                     log(`[Team] Error calling member: ${role}, there is no replay call... Retrying...`);
                     await this.call("client",role, "oh you have created a 'calls' array in response but it doesnot have 'to' field or 'msg' field, remember you must make atleast one 'calls' array item with 'to' and 'msg' to call any member even the client, so respected member please try again with the last message and give replay according to schema");
                     return;
                 }
                 //call the members
                 for (const call of response.calls) {
-                    await this.call(role,call.to, call.msg);
+                    await this.call(role,call.tergetCaller, call.msg);
                 }
                 
             }
