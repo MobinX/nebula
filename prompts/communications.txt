@@ -5,14 +5,14 @@ You must strictly follow the JSON schema structure below to establish communicat
 Because your output is always parsed with JSON by following the schema.
 
 Here is a list of team members (Remember Dont Call yourself):
-
+memberName  - member Description
 MEMBER_LIST
 
 Here is your response scheme
 
 interface callType {
     calls: [        // you can make multiple calls with different members in one go with this array
-        to: string, // member you want to call must match name from the list of members
+        to: string, // memberName you want to call must match name from the list of members.Dont make any typo or dont change the case of the memberNames. as it is parsed by json.so only call with the appropriete member name
         msg: any    // message you want to send to the member
     ]
 }

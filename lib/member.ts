@@ -12,7 +12,7 @@ export interface MemberOutput {
     chatHistory: historyManagerType; // Replace with the appropriate type
     role: string;
     roleDescription: string;
-    call: (msg: any) => Promise<any>;
+    call: (from:string,msg: any) => Promise<any>;
     setUpCommunication: (comPrompt:string) => void // Replace with the appropriate type
 }
 
@@ -48,9 +48,9 @@ export const Member = async (memeberInfo: MemberType): Promise<MemberOutput> => 
             memberChatHistory.add("user", systemPrompt + "\n" + comPromt );
 
         },
-        call: async (msg: any) => {
+        call: async (from:string,msg: any) => {
             try {
-                memberChatHistory.add("user", msg);
+                memberChatHistory.add("user", `${from} has sent you a msg: ${msg}`);
                 const response = await generateGemini(memberChatHistory.history);
                 memberChatHistory.add("model", response);
                 return response;
