@@ -60,7 +60,7 @@ export const Member = async (memeberInfo: MemberType): Promise<MemberOutput> => 
         },
         call: async (from: string, msg: any) => {
             try {
-                memberChatHistory.add("user", `${from} has sent you a msg: ${msg}`);
+                memberChatHistory.add("user", `Hey ${memeberInfo.role}, ${from} has sent you a msg: ${msg}`);
                 const response = await generateGemini(memberChatHistory.history);
                 memberChatHistory.add("model", response);
                 return response;
