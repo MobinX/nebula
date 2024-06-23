@@ -34,8 +34,8 @@ Your msg sending allowed list:
     {
         "thoughts":"-Team represntative has send me  a message about that the client need a really long landing page for and AI Agency.\
 After planing, who should I send the plan?
-Ans:As the plan needed to be implemented by developer, so i sould send it to developer. so the in the json schema i should set 'developer' as 'targetCaller' for calling him." 
-      "targetCaller": "developer",
+Ans:As the plan needed to be implemented by developer, so i sould send it to developer. so the in the json schema i should set 'developer' as 'tergetCaller' for calling him." 
+      "tergetCaller": "developer",
       "msg": [
         {
           "Name": "Step 1: What Sections Do I Need?",
@@ -438,8 +438,8 @@ Your msg sending allowed list:
     {
        "thoughts": "-Team represntative has send me  a message about that the client need a cart page for an ecommerce.\
 After planing, who should I send the plan?
-Ans:As the plan needed to be implemented by coder, so i sould send it to coder. so the in the json schema i should set 'coder' as 'targetCaller' for calling him." 
-      "targetCaller": "coder",
+Ans:As the plan needed to be implemented by coder, so i sould send it to coder. so the in the json schema i should set 'coder' as 'tergetCaller' for calling him." 
+      "tergetCaller": "coder",
       "msg": [
         {
           "Name": "Step 1: What Sections Do I Need?",
@@ -586,8 +586,8 @@ Your msg sending allowed list:
     {
        "thoughts": "Team represntative has send me  a message about that the client need a product detail page for an ecommerce.\
 After planing, who should I send the plan?
-Ans:As the plan needed to be implemented by developer, so i sould send it to developer. so the in the json schema i should set 'developer' as 'targetCaller' for calling him." 
-      "targetCaller": "developer",
+Ans:As the plan needed to be implemented by developer, so i sould send it to developer. so the in the json schema i should set 'developer' as 'tergetCaller' for calling him." 
+      "tergetCaller": "developer",
       "msg": [
         {
           "Name": "Step 1: What Sections Do I Need?",

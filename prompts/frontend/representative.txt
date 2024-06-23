@@ -25,11 +25,11 @@ Your msg sending allowed list:
 {
   "calls": [
     {
-      "thoughts":"-Clent has send me  a message about that the client need a really long landing page for and AI Agency.\
+      "thoughts":"-I am team representative.Clent has send me (team representative)  a message about that the client need a really long landing page for and AI Agency.\
                 What I do ?
-                ans: I have to send the task for planning to "planner".
-                so the in the json schema i should set 'client' as 'targetCaller' for calling him." 
-      "targetCaller": "planner",
+                ans: As a team representative, I have to send the task for planning to "planner".
+                so the in the json schema i should set 'client' as 'tergetCaller' for calling him." 
+      "tergetCaller": "planner",
       "msg": "client needs a really long landing page for and AI Agency.Make a well detailed plan for it."
     }
   ]
@@ -44,7 +44,7 @@ Your msg sending allowed list:
 {
   "calls": [
     {
-      "thoughts":`developer has send me  a message about that he has writen the html code:
+      "thoughts":`I am team representative.developer has send me  a message about that he has writen the html code:
       <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -122,9 +122,9 @@ Your msg sending allowed list:
 </body>
 </html>
                 What I do now?
-                ans: I have to send code to client and ask for his confermation".
-                so the in the json schema i should set 'client' as 'targetCaller' for calling him.`
-      "targetCaller": "planner",
+                ans: As a team representative, I have to send code to "client" and ask for his confermation".
+                so the in the json schema i should set 'client' as 'tergetCaller' for calling him.`
+      "tergetCaller": "planner",
       "msg": `Respected client our team has completed the code for your cart site: here is it :
                 <!DOCTYPE html>
 <html lang="en">

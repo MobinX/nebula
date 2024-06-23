@@ -40,11 +40,146 @@ Your msg sending allowed list:
 {
   "calls": [
     {
-        "thoughts":"-Planner has send me  a message about desing plan of a cart page.I have to complete it using daisy ui and only daisyui colors.
+        "thoughts":"Planner has send me  a message about desing plan of a cart page.the plan :
+        [
+        {
+          "Name": "Step 1: What Sections Do I Need?",
+          "question": "What sections should the cart page have?",
+          "answer": "The cart page should have the following sections:\nHeader\nCart Items\nCart Summary\nPayment & Checkout\nFooter"
+        },
+        {
+          "Name": "Step 2: What Components Does the Header Need?",
+          "question": "What components should be in the header?",
+          "answer": "The header should include:\nSite Logo\nUser Profile Icon (with dropdown for account/order history)\nCart Icon (with cart item count)"
+        },
+        {
+          "Name": "Step 3: What Layout Should the Header Have for Mobile and Desktop?",
+          "question": "What layout should the header have in mobile and desktop views?",
+          "answer": "Mobile Layout: Flex column (flex-col), items centered (items-center)\nDesktop Layout: Flex row (flex-row), justify-between (justify-between), items centered (items-center)"
+        },
+        {
+          "Name": "Step 4: How Should the Components in the Header Be Styled and Arranged?",
+          "question": "How should the site logo be styled and arranged in mobile and desktop views?",
+          "answer": "Image, fixed size\nMobile Layout: Margin-bottom 4px (mb-4)\nDesktop Layout: Margin-right auto (mr-auto)"
+        },
+        {
+          "Name": "Step 4: How Should the Components in the Header Be Styled and Arranged?",
+          "question": "How should the user profile icon be styled and arranged in mobile and desktop views?",
+          "answer": "Image, small size\nMobile Layout: Margin-bottom 4px (mb-4)\nDesktop Layout: Margin-left 4px (ml-4)"
+        },
+        {
+          "Name": "Step 4: How Should the Components in the Header Be Styled and Arranged?",
+          "question": "How should the cart icon be styled and arranged in mobile and desktop views?",
+          "answer": "Image, small size, badge for item count\nMobile Layout: Margin-bottom 4px (mb-4)\nDesktop Layout: Margin-left 4px (ml-4)"
+        },
+        {
+          "Name": "Step 5: What Components Does the Cart Items Section Need?",
+          "question": "What components should the cart items section include?",
+          "answer": "The cart items section should include:\nList of added products\nProduct Image\nProduct Name\nProduct Price\nQuantity Control (increase/decrease)\nRemove Item Button"
+        },
+        {
+          "Name": "Step 6: What Layout Should the Cart Items Section Have for Mobile and Desktop?",
+          "question": "What layout should the cart items section have in mobile and desktop views?",
+          "answer": "Mobile Layout: Flex column (flex-col)\nDesktop Layout: Flex column (flex-col)\nSpacing: Padding 24px, Margin 16px top and bottom"
+        },
+        {
+          "Name": "Step 7: How Should the Components in the Cart Items Section Be Styled and Arranged?",
+          "question": "How should each product item be styled and arranged in mobile and desktop views?",
+          "answer": "Structure: Flexbox\nMobile Layout: Flex column (flex-col), margin-bottom 4px (mb-4)\nDesktop Layout: Flex row (flex-row), margin-bottom 4px (mb-4)\nSpacing: Padding 16px"
+        },
+        {
+          "Name": "Step 7: How Should the Components in the Cart Items Section Be Styled and Arranged?",
+          "question": "How should the product image be styled and arranged in mobile and desktop views?",
+          "answer": "Image, fixed size\nMobile Layout: Full width (w-full), margin-bottom 4px (mb-4)\nDesktop Layout: Quarter width (w-1/4), margin-right 4px (mr-4)"
+        },
+        {
+          "Name": "Step 7: How Should the Components in the Cart Items Section Be Styled and Arranged?",
+          "question": "How should the product details be styled and arranged in mobile and desktop views?",
+          "answer": "Structure: Flexbox\nMobile Layout: Flex column (flex-col)\nDesktop Layout: Flex column (flex-col)\nSpacing: Padding 16px"
+        },
+        {
+          "Name": "Step 8: What Components Does the Cart Summary Section Need?",
+          "question": "What components should the cart summary section include?",
+          "answer": "The cart summary section should include:\nSubtotal\nShipping Costs (if applicable)\nDiscount (if applicable)\nTotal"
+        },
+        {
+          "Name": "Step 9: What Layout Should the Cart Summary Section Have for Mobile and Desktop?",
+          "question": "What layout should the cart summary section have in mobile and desktop views?",
+          "answer": "Mobile Layout: Flex column (flex-col)\nDesktop Layout: Flex column (flex-col)\nSpacing: Padding 24px, Margin 16px top and bottom"
+        },
+        {
+          "Name": "Step 10: How Should the Components in the Cart Summary Section Be Styled and Arranged?",
+          "question": "How should the subtotal be styled?",
+          "answer": "Bold text for emphasis."
+        },
+        {
+          "Name": "Step 10: How Should the Components in the Cart Summary Section Be Styled and Arranged?",
+          "question": "How should the shipping costs (if applicable) be styled?",
+          "answer": "Regular text."
+        },
+        {
+          "Name": "Step 10: How Should the Components in the Cart Summary Section Be Styled and Arranged?",
+          "question": "How should the discount (if applicable) be styled?",
+          "answer": "Regular text."
+        },
+        {
+          "Name": "Step 10: How Should the Components in the Cart Summary Section Be Styled and Arranged?",
+          "question": "How should the total be styled?",
+          "answer": "Bold text with a larger font size for emphasis."
+        },
+        {
+          "Name": "Step 11: What Components Does the Payment & Checkout Section Need?",
+          "question": "What components should the payment & checkout section include?",
+          "answer": "The payment & checkout section should include:\nApply Coupon Code (input field)\nCheckout Button (prominent and clear call to action)"
+        },
+        {
+          "Name": "Step 12: What Layout Should the Payment & Checkout Section Have for Mobile and Desktop?",
+          "question": "What layout should the payment & checkout section have in mobile and desktop views?",
+          "answer": "Mobile Layout: Flex column (flex-col)\nDesktop Layout: Flex row (flex-row), justify-between (justify-between)\nSpacing: Padding 24px, Margin 16px top and bottom"
+        },
+        {
+          "Name": "Step 13: How Should the Components in the Payment & Checkout Section Be Styled and Arranged?",
+          "question": "How should the coupon code input be styled and arranged in mobile and desktop views?",
+          "answer": "Input field with placeholder text\nMobile Layout: Full width (w-full), margin-bottom 4px (mb-4)\nDesktop Layout: Half width (w-1/2)"
+        },
+        {
+          "Name": "Step 13: How Should the Components in the Payment & Checkout Section Be Styled and Arranged?",
+          "question": "How should the checkout button be styled and arranged in mobile and desktop views?",
+          "answer": "Button with prominent size\nMobile Layout: Full width (w-full)\nDesktop Layout: Quarter width (w-1/4)"
+        },
+        {
+          "Name": "Step 14: What Components Does the Footer Need?",
+          "question": "What components should the footer include?",
+          "answer": "The footer should include:\nCopyright Information\nLinks to Privacy Policy, Terms of Service, etc."
+        },
+        {
+          "Name": "Step 15: What Layout Should the Footer Have for Mobile and Desktop?",
+          "question": "What layout should the footer have in mobile and desktop views?",
+          "answer": "Mobile Layout: Flex column (flex-col), items centered (items-center)\nDesktop Layout: Flex row (flex-row), justify-between (justify-between), items centered (items-center)\nSpacing: Padding 16px"
+        },
+        {
+          "Name": "Step 16: How Should the Components in the Footer Be Styled and Arranged?",
+          "question": "How should the copyright information be styled and arranged?",
+          "answer": "Small text, left-aligned."
+        },
+        {
+          "Name": "Step 16: How Should the Components in the Footer Be Styled and Arranged?",
+          "question": "How should the links be styled and arranged in mobile and desktop views?",
+          "answer": "Text, small size, right-aligned\nMobile Layout: Margin-top 4px (mt-4)\nDesktop Layout: Margin-left auto (ml-auto)"
+        },
+        {
+          "Name": "Step 17: Common Components",
+          "question": "What common components and their styles should be used across the page?",
+          "answer": "Buttons:\nMobile Layout: Full width (w-full), margin-bottom 4px (mb-4)\nDesktop Layout: Auto width (w-auto)\nSpacing: Padding 12px\nStyling: Background color, border, text color, hover effects\nInput Fields:\nMobile Layout: Full width (w-full), margin-bottom 4px (mb-4)\nDesktop Layout: Auto width (w-auto)\nSpacing: Padding 10px\nStyling: Border, placeholder text color, focus effects\nText:\nGroup layout\nSpacing: Padding 0, Margin 0\nStyling: Font family, font size, font weight, text color\nImages:\nGroup layout\nSpacing: Padding 0, Margin 0\nStyling: Fixed size, responsive scaling\nLayout & Visuals:\nConsistent grid system\nEffective use of padding and margins\nClear color palette and typography\nSmooth transitions and hover effects\nMobile responsiveness with flexible layout"
+        }
+      ]
+    }
+  ]     
+        I have to complete it using daisy ui and only daisyui colors.I cant say i am working on it or I have got the plan.I can only reply with code.So I will only write the code and reply team-representative ONLY WITH CODE.MY REPLY ONLY CONTAIN CODE> ONLY ONLY CODEs.
 After planing, who should I send the plan?
-Ans:As the plan clearify by team reprentative, so i sould send it to "team-representative". so the in the json schema i should set 'team-representative' as 'targetCaller' for calling him." 
-      "targetCaller": "team-representative",
-      "msg": `<!DOCTYPE html>
+Ans:As the code clearify by team reprentative, so i sould send it to "team-representative". so the in the json schema i should set 'team-representative' as 'tergetCaller' for calling him." 
+      "tergetCaller": "team-representative",
+      "msg": `You know i only reply with code this is code.:<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -117,6 +252,345 @@ Ans:As the plan clearify by team reprentative, so i sould send it to "team-repre
       </div>
     </footer>
   </div>
+
+</body>
+</html>`
+    }
+  ]
+}
+
+=====================================================Example 2=========================================
+Your msg sending allowed list:
+    client
+    team-representative
+    planner
+
+{
+  "calls": [
+    {
+        "thoughts":"Planner has send me  a message about desing plan of a product detail page.the plan is:
+         [
+        {
+          "Name": "Step 1: What Sections Do I Need?",
+          "question": "What sections should the product details page have?",
+          "answer": "The product details page should have the following sections:\n\nHeader\nProduct Images\nProduct Information\nProduct Description\nReviews & Ratings\nRelated Products\nFooter"
+        },
+        {
+          "Name": "Step 2: What Components Does the Header Need?",
+          "question": "What components should be in the header?",
+          "answer": "The header should include:\n\nSite Logo\nUser Profile Icon (with dropdown for account/order history)\nCart Icon (with cart item count)\nSearch Bar\nNavigation Menu (Home, Categories, Contact, etc.)"
+        },
+        {
+          "Name": "Step 3: What Layout Should the Header Have for Mobile and Desktop?",
+          "question": "What layout should the header have in mobile and desktop views?",
+          "answer": "Mobile Layout: Flex column (flex-col), items centered (items-center)\nDesktop Layout: Flex row (flex-row), justify-between (justify-between), items centered (items-center)"
+        },
+        {
+          "Name": "Step 4: How Should the Components in the Header Be Styled and Arranged?",
+          "question": "How should the site logo be styled and arranged in mobile and desktop views?",
+          "answer": "Image: Fixed size\nMobile Layout: Margin-bottom 4px (mb-4)\nDesktop Layout: Margin-right auto (mr-auto)"
+        },
+        {
+          "Name": "Step 4: How Should the Components in the Header Be Styled and Arranged?",
+          "question": "How should the user profile icon be styled and arranged in mobile and desktop views?",
+          "answer": "Image: Small size\nMobile Layout: Margin-bottom 4px (mb-4)\nDesktop Layout: Margin-left 4px (ml-4)"
+        },
+        {
+          "Name": "Step 4: How Should the Components in the Header Be Styled and Arranged?",
+          "question": "How should the cart icon be styled and arranged in mobile and desktop views?",
+          "answer": "Image: Small size, badge for item count\nMobile Layout: Margin-bottom 4px (mb-4)\nDesktop Layout: Margin-left 4px (ml-4)"
+        },
+        {
+          "Name": "Step 4: How Should the Components in the Header Be Styled and Arranged?",
+          "question": "How should the search bar be styled and arranged in mobile and desktop views?",
+          "answer": "Input field: Full width\nMobile Layout: Margin-bottom 4px (mb-4)\nDesktop Layout: Width 50% (w-1/2), margin-right auto (mr-auto)"
+        },
+        {
+          "Name": "Step 4: How Should the Components in the Header Be Styled and Arranged?",
+          "question": "How should the navigation menu be styled and arranged in mobile and desktop views?",
+          "answer": "Links: Small size\nMobile Layout: Hidden\nDesktop Layout: Flex row (flex-row), justify-between (justify-between)"
+        },
+        {
+          "Name": "Step 5: What Components Does the Product Images Section Need?",
+          "question": "What components should the product images section include?",
+          "answer": "The product images section should include:\n\nMain Product Image\nThumbnail Images (carousel or list)"
+        },
+        {
+          "Name": "Step 6: What Layout Should the Product Images Section Have for Mobile and Desktop?",
+          "question": "What layout should the product images section have in mobile and desktop views?",
+          "answer": "Mobile Layout: Flex column (flex-col)\nDesktop Layout: Flex row (flex-row), main image on the left, thumbnails on the right\nSpacing: Padding 24px, Margin 16px top and bottom"
+        },
+        {
+          "Name": "Step 7: How Should the Components in the Product Images Section Be Styled and Arranged?",
+          "question": "How should the main product image be styled and arranged in mobile and desktop views?",
+          "answer": "Image: Fixed or responsive size\nMobile Layout: Full width (w-full), margin-bottom 4px (mb-4)\nDesktop Layout: Half width (w-1/2), margin-right 4px (mr-4)"
+        },
+        {
+          "Name": "Step 7: How Should the Components in the Product Images Section Be Styled and Arranged?",
+          "question": "How should the thumbnail images be styled and arranged in mobile and desktop views?",
+          "answer": "Image: Small fixed size\nMobile Layout: Flex row (flex-row), horizontal scroll\nDesktop Layout: Flex column (flex-col), align left"
+        },
+        {
+          "Name": "Step 8: What Components Does the Product Information Section Need?",
+          "question": "What components should the product information section include?",
+          "answer": "The product information section should include:\n\nProduct Title\nPrice\nRating (stars)\nAvailability\nShort Description\nQuantity Selector\nAdd to Cart Button\nAdd to Wishlist Button"
+        },
+        {
+          "Name": "Step 9: What Layout Should the Product Information Section Have for Mobile and Desktop?",
+          "question": "What layout should the product information section have in mobile and desktop views?",
+          "answer": "Mobile Layout: Flex column (flex-col)\nDesktop Layout: Flex column (flex-col)\nSpacing: Padding 24px, Margin 16px top and bottom"
+        },
+        {
+          "Name": "Step 10: How Should the Components in the Product Information Section Be Styled and Arranged?",
+          "question": "How should the product title be styled?",
+          "answer": "Text: Bold, large font size"
+        },
+        {
+          "Name": "Step 10: How Should the Components in the Product Information Section Be Styled and Arranged?",
+          "question": "How should the price be styled?",
+          "answer": "Text: Bold, medium font size, color highlighting"
+        },
+        {
+          "Name": "Step 10: How Should the Components in the Product Information Section Be Styled and Arranged?",
+          "question": "How should the rating be styled and arranged?",
+          "answer": "Stars: Icon or image, small size\nText: Small size, margin-left 4px (ml-4)"
+        },
+        {
+          "Name": "Step 10: How Should the Components in the Product Information Section Be Styled and Arranged?",
+          "question": "How should the availability be styled?",
+          "answer": "Text: Regular font size, color indication (green for available, red for out of stock)"
+        },
+        {
+          "Name": "Step 10: How Should the Components in the Product Information Section Be Styled and Arranged?",
+          "question": "How should the short description be styled?",
+          "answer": "Text: Regular font size, light weight"
+        },
+        {
+          "Name": "Step 10: How Should the Components in the Product Information Section Be Styled and Arranged?",
+          "question": "How should the quantity selector be styled and arranged?",
+          "answer": "Input field: Small width\nMobile Layout: Flex row (flex-row), margin-bottom 4px (mb-4)\nDesktop Layout: Inline with other components"
+        },
+        {
+          "Name": "Step 10: How Should the Components in the Product Information Section Be Styled and Arranged?",
+          "question": "How should the add to cart button be styled and arranged?",
+          "answer": "Button: Prominent size\nMobile Layout: Full width (w-full), margin-bottom 4px (mb-4)\nDesktop Layout: Auto width (w-auto)"
+        },
+        {
+          "Name": "Step 10: How Should the Components in the Product Information Section Be Styled and Arranged?",
+          "question": "How should the add to wishlist button be styled and arranged?",
+          "answer": "Button: Small size\nMobile Layout: Full width (w-full), margin-bottom 4px (mb-4)\nDesktop Layout: Auto width (w-auto)"
+        },
+        {
+          "Name": "Step 11: What Components Does the Product Description Section Need?",
+          "question": "What components should the product description section include?",
+          "answer": "The product description section should include:\n\nDetailed Description\nSpecifications (if any)\nAdditional Information"
+        },
+        {
+          "Name": "Step 12: What Layout Should the Product Description Section Have for Mobile and Desktop?",
+          "question": "What layout should the product description section have in mobile and desktop views?",
+          "answer": "Mobile Layout: Flex column (flex-col)\nDesktop Layout: Flex column (flex-col)\nSpacing: Padding 24px, Margin 16px top and bottom"
+        },
+        {
+          "Name": "Step 13: How Should the Components in the Product Description Section Be Styled and Arranged?",
+          "question": "How should the detailed description be styled?",
+          "answer": "Text: Regular font size"
+        },
+        {
+          "Name": "Step 13: How Should the Components in the Product Description Section Be Styled and Arranged?",
+          "question": "How should the specifications be styled and arranged?",
+          "answer": "Text: List format, small font size"
+        },
+        {
+          "Name": "Step 13: How Should the Components in the Product Description Section Be Styled and Arranged?",
+          "question": "How should the additional information be styled and arranged?",
+          "answer": "Text: Regular font size"
+        },
+        {
+          "Name": "Step 14: What Components Does the Reviews & Ratings Section Need?",
+          "question": "What components should the reviews & ratings section include?",
+          "answer": "The reviews & ratings section should include:\n\nOverall Rating (aggregate)\nIndividual Reviews (with star ratings and text)\nWrite a Review Button"
+        },
+        {
+          "Name": "Step 15: What Layout Should the Reviews & Ratings Section Have for Mobile and Desktop?",
+          "question": "What layout should the reviews & ratings section have in mobile and desktop views?",
+          "answer": "Mobile Layout: Flex column (flex-col)\nDesktop Layout: Flex column (flex-col)\nSpacing: Padding 24px, Margin 16px top and bottom"
+        },
+        {
+          "Name": "Step 16: How Should the Components in the Reviews & Ratings Section Be Styled and Arranged?",
+          "question": "How should the overall rating be styled and arranged?",
+          "answer": "Text: Large font size, bold\nStars: Icon or image, medium size"
+        },
+        {
+          "Name": "Step 16: How Should the Components in the Reviews & Ratings Section Be Styled and Arranged?",
+          "question": "How should the individual reviews be styled and arranged?",
+          "answer": "Text: Regular font size\nStars: Icon or image, small size\nSpacing: Margin-bottom 16px (mb-16)"
+        },
+        {
+          "Name": "Step 16: How Should the Components in the Reviews & Ratings Section Be Styled and Arranged?",
+          "question": "How should the write a review button be styled and arranged?",
+          "answer": "Button: Prominent size\nMobile Layout: Full width (w-full), margin-bottom 4px (mb-4)\nDesktop Layout: Auto width (w-auto)"
+        },
+        {
+          "Name": "Step 17: What Components Does the Related Products Section Need?",
+          "question": "What components should the related products section include?",
+          "answer": "The related products section should include:\n\nProduct Thumbnails\nProduct Titles\nProduct Prices"
+        },
+        {
+          "Name": "Step 18: What Layout Should the Related Products Section Have for Mobile and Desktop?",
+          "question": "What layout should the related products section have in mobile and desktop views?",
+          "answer": "Mobile Layout: Flex column (flex-col), horizontal scroll\nDesktop Layout: Flex row (flex-row), grid layout"
+        },
+        {
+          "Name": "Step 19: How Should the Components in the Related Products Section Be Styled and Arranged?",
+          "question": "How should the product thumbnails be styled and arranged?",
+          "answer": "Image: Small fixed size\nSpacing: Margin-right 4px (mr-4)"
+        },
+        {
+          "Name": "Step 19: How Should the Components in the Related Products Section Be Styled and Arranged?",
+          "question": "How should the product titles be styled?",
+          "answer": "Text: Small font size"
+        },
+        {
+          "Name": "Step 19: How Should the Components in the Related Products Section Be Styled and Arranged?",
+          "question": "How should the product prices be styled?",
+          "answer": "Text: Small font size, bold"
+        },
+        {
+          "Name": "Step 20: What Components Does the Footer Need?",
+          "question": "What components should the footer include?",
+          "answer": "The footer should include:\n\nCopyright Information\nLinks to Privacy Policy, Terms of Service, etc.\nSocial Media Icons"
+        },
+        {
+          "Name": "Step 21: What Layout Should the Footer Have for Mobile and Desktop?",
+          "question": "What layout should the footer have in mobile and desktop views?",
+          "answer": "Mobile Layout: Flex column (flex-col), items centered (items-center)\nDesktop Layout: Flex row (flex-row), justify-between (justify-between), items centered (items-center)\nSpacing: Padding 16px"
+        },
+        {
+          "Name": "Step 22: How Should the Components in the Footer Be Styled and Arranged?",
+          "question": "How should the copyright information be styled and arranged?",
+          "answer": "Text: Small size, left-aligned"
+        },
+        {
+          "Name": "Step 22: How Should the Components in the Footer Be Styled and Arranged?",
+          "question": "How should the links be styled and arranged in mobile and desktop views?",
+          "answer": "Text: Small size\nMobile Layout: Margin-top 4px (mt-4)\nDesktop Layout: Margin-left auto (ml-auto)"
+        },
+        {
+          "Name": "Step 22: How Should the Components in the Footer Be Styled and Arranged?",
+          "question": "How should the social media icons be styled and arranged?",
+          "answer": "Image: Small size\nMobile Layout: Margin-top 4px (mt-4)\nDesktop Layout: Margin-left 4px (ml-4)"
+        },
+        {
+          "Name": "Step 23: Common Components",
+          "question": "What common components and their styles should be used across the page?",
+          "answer": "Buttons:\nMobile Layout: Full width (w-full), margin-bottom 4px (mb-4)\nDesktop Layout: Auto width (w-auto)\nSpacing: Padding 12px\nStyling: Background color, border, text color, hover effects\nInput Fields:\nMobile Layout: Full width (w-full), margin-bottom 4px (mb-4)\nDesktop Layout: Auto width (w-auto)\nSpacing: Padding 10px\nStyling: Border, placeholder text color, focus effects\nText:\nGroup layout\nSpacing: Padding 0, Margin 0\nStyling: Font family, font size, font weight, text color\nImages:\nGroup layout\nSpacing: Padding 0, Margin 0\nStyling: Fixed size, responsive scaling\nLayout & Visuals:\nConsistent grid system\nEffective use of padding and margins\nClear color palette and typography\nSmooth transitions and hover effects\nMobile responsiveness with flexible layout"
+        }
+      ]
+        
+        .I have to complete it using daisy ui and only daisyui colors.I cant say i am working on it or I have got the plan.I can only reply with code.So I will only write the code and reply team-representative ONLY WITH CODE.MY REPLY ONLY CONTAIN CODE> ONLY ONLY CODEs.
+After planing, who should I send the plan?
+Ans:As the code clearify by team reprentative, so i sould send it to "team-representative". so the in the json schema i should set 'team-representative' as 'tergetCaller' for calling him." 
+      "tergetCaller": "team-representative",
+      "msg": `You know i only reply with code this is code.:<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.50.1/dist/full.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <header class="bg-base-100 py-4 px-4 shadow-md">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        <img src="/logo.png" alt="Site Logo" class="w-20 h-auto mr-4">
+        <div class="hidden md:flex items-center">
+          <img src="/user-profile.png" alt="User Profile" class="w-8 h-8 rounded-full mr-4">
+          <img src="/cart-icon.png" alt="Cart Icon" class="w-8 h-8 rounded-full">
+          <span class="badge badge-primary ml-2">5</span>
+        </div>
+      </div>
+      <div class="hidden md:flex items-center">
+        <img src="/user-profile.png" alt="User Profile" class="w-8 h-8 rounded-full mr-4">
+        <img src="/cart-icon.png" alt="Cart Icon" class="w-8 h-8 rounded-full">
+        <span class="badge badge-primary ml-2">5</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="bg-base-200 py-4 px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="card w-full shadow-md">
+        <div class="card-body">
+          <div class="flex items-center">
+            <img src="/product1.jpg" alt="Product Image" class="w-24 h-24 rounded-lg mr-4">
+            <div class="flex flex-col">
+              <h2 class="card-title">Product Name</h2>
+              <p class="font-bold">$19.99</p>
+              <div class="flex items-center mt-2">
+                <button class="btn btn-sm btn-circle">-</button>
+                <span class="ml-2">2</span>
+                <button class="btn btn-sm btn-circle">+</button>
+                <button class="btn btn-sm btn-ghost ml-4">Remove</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-base-100 py-4 px-4">
+    <div class="card w-full shadow-md">
+      <div class="card-body">
+        <h2 class="card-title font-bold">Cart Summary</h2>
+        <div class="divider"></div>
+        <div class="flex justify-between">
+          <span class="font-bold">Subtotal</span>
+          <span>$199.99</span>
+        </div>
+        <div class="flex justify-between mt-2">
+          <span>Shipping</span>
+          <span>$10.00</span>
+        </div>
+        <div class="flex justify-between mt-2">
+          <span>Discount</span>
+          <span>$5.00</span>
+        </div>
+        <div class="flex justify-between mt-4">
+          <span class="font-bold text-lg">Total</span>
+          <span class="font-bold text-lg">$204.99</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-base-200 py-4 px-4">
+    <div class="card w-full shadow-md">
+      <div class="card-body">
+        <h2 class="card-title font-bold">Payment & Checkout</h2>
+        <div class="divider"></div>
+        <div class="form-control mt-4">
+          <label class="label">
+            <span class="label-text">Coupon Code</span>
+          </label>
+          <input type="text" placeholder="Enter Coupon Code" class="input input-bordered" />
+        </div>
+        <button class="btn btn-primary mt-4 w-full">Checkout</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-base-100 py-4 px-4 shadow-md">
+    <div class="flex items-center justify-between">
+      <span>© 2023 Your Company. All rights reserved.</span>
+      <div class="flex items-center">
+        <a href="#" class="mr-4">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>`

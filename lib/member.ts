@@ -52,10 +52,10 @@ export const Member = async (memeberInfo: MemberType): Promise<MemberOutput> => 
                 if (role != memeberInfo.role)
                     memberlist += `${role} - ${member.roleDescription}\n`;
             }
-            log(`[members] [${memeberInfo.role}] Members: ${memberlist}`);
+            // log(`[members] [${memeberInfo.role}] Members: ${memberlist}`);
             //load communication prompts
             
-            memberChatHistory.add("user", systemPrompt + "\n" + comPrompt.replace("MEMBER_LIST", memberlist));
+            memberChatHistory.add("user",comPrompt.replace("MEMBER_LIST", memberlist) + "\n" + systemPrompt  );
 
         },
         call: async (from: string, msg: any) => {
@@ -91,7 +91,7 @@ export const client = async (rl: any): Promise<MemberOutput> => {
                 memberChatHistory.add("user", `${from} has sent you a msg: ${msg}`);
                 const response: any = await prompt(rl, '${from} has sent you a msg: ${msg}');
                 memberChatHistory.add("model", response);
-                return { calls: [{ tergetCaller: "team-represntative", msg: response }] };
+                return { calls: [{ tergetCaller: "team-representative", msg: response }] };
             } catch (e) {
                 console.log("[Member] Error in member call: ", e);
                 throw e;
