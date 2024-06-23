@@ -102,3 +102,31 @@ export const client = async (rl: any): Promise<MemberOutput> => {
 
 
 
+export const codeRenderer = async (rl: any): Promise<MemberOutput> => {
+    //first get system prompt
+
+
+    const memberChatHistory = historyManager;
+    return {
+        chatHistory: memberChatHistory,
+        role: "code-renderer",
+        roleDescription: "Code renderer is the worker who is responsible for rendering the code to client for review. The code renderer can show the code to the client and get the feedback from the client. The code renderer can also send the code to the team members for review.",
+        setUpCommunication: (members: Map<string, MemberOutput>,comPrompt:string) => {
+
+        },
+        call: async (from: string, msg: any) => {
+            try {
+                memberChatHistory.add("user", `${from} has sent you a msg: ${msg}`);
+                const response: any = await prompt(rl, '${from} has sent you the code review it.: ${msg}');
+                memberChatHistory.add("model", response);
+                return { calls: [{ tergetCaller: "team-representative", msg: response }] };
+            } catch (e) {
+                console.log("[Member] Error in member call: ", e);
+                throw e;
+            }
+        },
+    };
+};
+
+
+

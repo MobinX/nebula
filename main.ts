@@ -1,4 +1,4 @@
-import { Member, client, type MemberType } from "./lib/member";
+import { Member, client, codeRenderer, type MemberType } from "./lib/member";
 import { Team } from "./lib/team";
 import readline from "readline"
 // a cli chat interface
@@ -57,6 +57,7 @@ for (let member of memberInfo) {
     frontendTeam.addMember(await Member(member));
 }
 frontendTeam.addMember(await client(rl));
+frontendTeam.addMember(await codeRenderer(rl));
 frontendTeam.setupCommunication();
 
 console.log(frontendTeam.getMembers());

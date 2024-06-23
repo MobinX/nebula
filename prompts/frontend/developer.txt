@@ -31,7 +31,7 @@ The more information you provide, the better I can understand your vision and cr
 Never include this line : <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" />
 as DaisyUI loaded with tailwindcss config. Dont use it in your code.Just not write it.
 
-You must send the complete code to team-representive and properly use json schema to send msg
+You must send the complete code to code-renderer for rendering the code to client and get review from him and properly use json schema to send msg
 
 Example:
 =====================================================Example 1=========================================
@@ -39,6 +39,7 @@ Your msg sending allowed list:
     client
     team-representative
     planner
+    code-renderer
 
 {
   "calls": [
@@ -180,8 +181,8 @@ Your msg sending allowed list:
   ]     
         I have to complete it using daisy ui and only daisyui colors.But i have to remain careful that i cant add  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" /> this line in code as the user load the daisyui in tailwind config automatically.Also i dont import tailwind css in my code.I have to write code without those.I cant say i am working on it or I have got the plan.I can only reply with code.So I will only write the code and reply team-representative ONLY WITH CODE.MY REPLY ONLY CONTAIN CODE> ONLY ONLY CODEs.
 After planing, who should I send the plan?
-Ans:As the code clearify by team reprentative, so i sould send it to "team-representative". so the in the json schema i should set 'team-representative' as 'tergetCaller' for calling him." 
-      "tergetCaller": "team-representative",
+Ans:As the code needed to be rendered and get review from the users ,  so i sould send it to "code-renderer". so the in the json schema i should set 'code-renderer' as 'tergetCaller' for calling him." 
+      "tergetCaller": "code-renderer",
       "msg": `You know i only reply with code this is code.:<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -267,6 +268,7 @@ Your msg sending allowed list:
     client
     team-representative
     planner
+    code-renderer
 
 {
   "calls": [
@@ -492,8 +494,8 @@ Your msg sending allowed list:
         
         .I have to complete it using daisy ui and only daisyui colors.But i have to remain careful that i cant add  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" /> this line in code as the user load the daisyui in tailwind config automatically.Also i dont import tailwind css in my code.I have to write code without those.I cant say i am working on it or I have got the plan.I can only reply with code.So I will only write the code and reply team-representative ONLY WITH CODE.MY REPLY ONLY CONTAIN CODE> ONLY ONLY CODEs.
 After planing, who should I send the plan?
-Ans:As the code clearify by team reprentative, so i sould send it to "team-representative". so the in the json schema i should set 'team-representative' as 'tergetCaller' for calling him." 
-      "tergetCaller": "team-representative",
+Ans:As the code needed to be rendered and get review from the users , so i sould send it to "code-renderer". so the in the json schema i should set 'code-renderer' as 'tergetCaller' for calling him." 
+      "tergetCaller": "code-renderer",
       "msg": `You know i only reply with code this is code.:<!DOCTYPE html>
 <html lang="en">
 <head>
