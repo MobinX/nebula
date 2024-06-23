@@ -69,3 +69,118 @@
   </footer>
 </body>
 </html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Buying Page</title>
+  <!------ no import for tailwind or daisyui assuming user will import it automatically ----->
+</head>
+<body>
+  <header class="bg-base-100 py-4 px-4 shadow-md">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        <img src="/logo.png" alt="Site Logo" class="w-20 h-auto mr-4">
+        <button class="btn btn-primary btn-sm">View Cart <span class="badge badge-primary ml-2">0</span></button>
+      </div>
+      <div class="hidden md:flex items-center">
+        <input type="text" placeholder="Search" class="input input-bordered w-full md:w-auto mr-4">
+        <button class="btn btn-primary btn-sm">Search</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8">
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="card w-full shadow-md">
+        <figure class="px-4">
+          <img src="https://dummyimage.com/300x200/000/fff&text=Product+1" alt="Shoes" class="rounded-lg" />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">Product 1</h2>
+          <p class="font-bold text-primary">$19.99</p>
+          <div class="card-actions">
+            <button class="btn btn-primary" onclick="openPaymentDialog()">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      <div class="card w-full shadow-md">
+        <figure class="px-4">
+          <img src="https://dummyimage.com/300x200/000/fff&text=Product+2" alt="Shoes" class="rounded-lg" />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">Product 2</h2>
+          <p class="font-bold text-primary">$29.99</p>
+          <div class="card-actions">
+            <button class="btn btn-primary" onclick="openPaymentDialog()">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      <div class="card w-full shadow-md">
+        <figure class="px-4">
+          <img src="https://dummyimage.com/300x200/000/fff&text=Product+3" alt="Shoes" class="rounded-lg" />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">Product 3</h2>
+          <p class="font-bold text-primary">$39.99</p>
+          <div class="card-actions">
+            <button class="btn btn-primary" onclick="openPaymentDialog()">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-base-100 py-4 px-4 shadow-md">
+    <div class="flex items-center justify-between">
+      <span>© 2023 Your Company. All rights reserved.</span>
+      <div class="flex items-center">
+        <a href="#" class="mr-4">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="paymentDialog" class="modal">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Payment Information</h3>
+      <form class="flex flex-col gap-4">
+        <div class="flex flex-col">
+          <label class="label">
+            <span class="label-text">Cardholder Name</span>
+          </label>
+          <input type="text" placeholder="Enter your name" class="input input-bordered w-full" required>
+        </div>
+        <div class="flex flex-col">
+          <label class="label">
+            <span class="label-text">Card Number</span>
+          </label>
+          <input type="text" placeholder="Enter your card number" class="input input-bordered w-full" required>
+        </div>
+        <div class="flex flex-col">
+          <label class="label">
+            <span class="label-text">Expiration Date</span>
+          </label>
+          <input type="text" placeholder="MM/YY" class="input input-bordered w-full" required>
+        </div>
+        <div class="flex flex-col">
+          <label class="label">
+            <span class="label-text">CVV</span>
+          </label>
+          <input type="text" placeholder="Enter CVV" class="input input-bordered w-full" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-full">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openPaymentDialog() {
+      document.getElementById('paymentDialog').classList.add('modal-open');
+    }
+  </script>
+</body>
+</html>
