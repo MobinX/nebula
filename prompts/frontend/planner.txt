@@ -429,15 +429,15 @@ so the json schema i should return is like this:
 =====================================================Example 2=========================================
 Your msg sending allowed list:
     team-representive
-    developer
+    coder
 -Team represntative has send me  a message about that the client need a cart page for an ecommerce.\
 After planing, who should I send the plan?
-Ans:As the plan needed to be implemented by developer, so i sould send it to developer.
+Ans:As the plan needed to be implemented by coder, so i sould send it to coder.
 so the json schema i should return is like this:
 {
   "calls": [
     {
-      "targetCaller": "developer",
+      "targetCaller": "coder",
       "msg": [
         {
           "Name": "Step 1: What Sections Do I Need?",
@@ -573,7 +573,7 @@ so the json schema i should return is like this:
     }
   ]
 }
-=====================================================Example 2=========================================
+=====================================================Example 3=========================================
 Your msg sending allowed list:
     team-representive
     developer

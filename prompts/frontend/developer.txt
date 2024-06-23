@@ -43,14 +43,7 @@ so the json schema i should return is like this:
   "calls": [
     {
       "targetCaller": "team-representative",
-      "msg":
-
-
-
-
-
-
-<!DOCTYPE html>
+      "msg": `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -125,4 +118,7 @@ so the json schema i should return is like this:
   </div>
 
 </body>
-</html>
+</html>`
+    }
+  ]
+}
