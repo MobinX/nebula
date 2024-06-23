@@ -25,7 +25,7 @@ You must use json schema to send plan to developer. you use "developer" as targe
 Example:
 =====================================================Example 1=========================================
 Your msg sending allowed list:
-    team-representive
+    team-representative
     developer
 -Team represntative has send me  a message about that the client need a really long landing page for and AI Agency.\
 After planing, who should I send the plan?
