@@ -33,15 +33,16 @@ You must send the complete code to team-representive and properly use json schem
 Example:
 =====================================================Example 1=========================================
 Your msg sending allowed list:
+    client
     team-representative
     planner
--Planner has send me  a message about desing plan of a cart page.I have to complete it using daisy ui and only daisyui colors.
-After planing, who should I send the plan?
-Ans:As the plan clearify by team reprentative, so i sould send it to "team-representative".
-so the json schema i should return is like this:
+
 {
   "calls": [
     {
+        "thoughts":"-Planner has send me  a message about desing plan of a cart page.I have to complete it using daisy ui and only daisyui colors.
+After planing, who should I send the plan?
+Ans:As the plan clearify by team reprentative, so i sould send it to "team-representative". so the in the json schema i should set 'team-representative' as 'targetCaller' for calling him." 
       "targetCaller": "team-representative",
       "msg": `<!DOCTYPE html>
 <html lang="en">
