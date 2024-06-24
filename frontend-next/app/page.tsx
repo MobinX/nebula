@@ -1,33 +1,38 @@
 "use client"
 import Image from "next/image";
-import { useState } from "react";
+// import { useEffect, useState } from "react";
 import { Member, clientWeb, codeRendererWeb, type MemberType } from "../lib/member";
 import { Team } from "../lib/team";
 import { memberInfo } from "@/ai/frontend-team";
 import { loadPrompts } from "@/utils/loadPrompts";
+import { useEffectOnce } from "@/lib/useEffectOnce";
 export default function Home() {
   const log = console.log;
-  // should run only once
-  useState(async ()=>{
-    const team = new Team("frontend",log);
-    memberInfo.forEach(async (member:MemberType)=>{
-      team.addMember(await Member(member));
-    })
-    team.addMember(await clientWeb(async (msg:string)=>{
-       console.log(msg);
-        return prompt(msg);
-    }));
-    team.addMember(await codeRendererWeb(async (msg:string)=>{
-       console.log(msg);
-        return prompt(msg);
-    }));
-    team.setupCommunication();
-    setTimeout(() => {
-      team.call("client","team-representative", "I need a hero section");
-    }, 4000);
 
-  
-  },[]);
+  // should run only once
+  useEffectOnce(() => {
+    const initTeam = async () => {
+      const team = new Team("frontend", log);
+      memberInfo.forEach(async (member: MemberType) => {
+        team.addMember(await Member(member));
+      })
+      team.addMember(await clientWeb(async (msg: string) => {
+        console.log(msg);
+        return prompt(msg);
+      }));
+      team.addMember(await codeRendererWeb(async (msg: string) => {
+        console.log(msg);
+        return prompt(msg);
+      }));
+      team.setupCommunication();
+      setTimeout(() => {
+        team.call("client", "team-representative", "I need a hero section");
+      }, 4000);
+    }
+    initTeam();
+
+
+  });
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">

@@ -86,7 +86,7 @@ export class Team {
                 return;
             }
         } else {
-            this.log(`[Team] Member not found: ${role}`);
+            this.log(`[Team] Member not found: ${role} called from ${from}... Retrying...`);
             await this.call("system",role, `MEMBER NOT FOUND.remeber you can only call the listed members that is given you earlier.you are only allowed to call this members ${this.getMemeberListExceptRole(role)}.May be make any typo or mistake in memberName, and you must make atleast one 'calls' with 'tergetCaller' and 'msg' to call any member even the client, respected member please try again the last message and give replay according to schema`);
             return;
         }
