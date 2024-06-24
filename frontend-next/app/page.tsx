@@ -8,8 +8,6 @@ import { loadPrompts } from "@/utils/loadPrompts";
 import { useEffectOnce } from "@/lib/useEffectOnce";
 export default function Home() {
   const log = console.log;
-
-  // should run only once
   useEffectOnce(() => {
     const initTeam = async () => {
       const team = new Team("frontend", log);
@@ -24,10 +22,10 @@ export default function Home() {
         console.log(msg);
         return prompt(msg);
       }));
-      team.setupCommunication();
-      setTimeout(() => {
+      await team.setupCommunication();
+      // setTimeout(() => {
         team.call("client", "team-representative", "I need a hero section");
-      }, 4000);
+      // }, 1000);
     }
     initTeam();
 
