@@ -16,9 +16,9 @@ export interface historyManagerType {
     add: (role: "user" | "model" | "system", text: string | object) => void;
     clear: () => void;
 }
-export const historyManager:historyManagerType = {
+export const historyManager: historyManagerType = {
     history: [] as ChatHistory[],
-    add: function (role: "user" | "model" | "system", text: string|object) {
+    add: function (role: "user" | "model" | "system", text: string | object) {
         try {
             this.history.push({
                 role: role,
@@ -79,13 +79,29 @@ export const generateGemini = async (history: ChatHistory[]) => {
                 }
             })
         });
+        const reader: any = response?.body?.getReader();
+        const decoder = new TextDecoder('utf-8');
+        let buffer = '';
 
+        //   const outputElement = document.getElementById('output');
 
-
-        const data = await response.json();
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            let valueStr = decoder.decode(value, { stream: true });
+            buffer += decoder.decode(value, { stream: true });
+            console.log(buffer);
+        }
+        let data = null;
+        try {
+            data = JSON.parse(buffer);
+            // Now you can work with 'data' as a JavaScript object
+        } catch (error) {
+            console.error("Error parsing JSON from buffer:", error);
+        }
         // console.log("[callGemini] Data: ");
-        // console.log(util.inspect(data, { showHidden: false, depth: null }));
-        if (data.candidates) {
+        // console.lPriyanshu Kistalekar. og(util.inspect(data, { showHidden: false, depth: null }));
+        if (data?.candidates) {
             return (JSON.parse(data.candidates[0].content.parts[0].text));
         }
         return "ERROR";
