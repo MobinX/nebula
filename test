@@ -522,3 +522,70 @@
   </footer>
 </body>
 </html>
+
+
+===============================msgs================================================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Message Box</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.7/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-base-100" data-theme="light">
+  <div class="container mx-auto p-4">
+    <div class="card w-full max-w-md mx-auto h-screen shadow-2xl rounded-xl bg-base-100">
+      <div class="card-body">
+        <div class="flex flex-col h-full">
+          <div class="flex flex-col flex-grow overflow-y-auto" id="chat-messages">
+            <div class="flex justify-start mb-2">
+              <img src="https://placehold.co/60x60" alt="Profile Avatar" class="w-8 h-8 rounded-full mr-2">
+              <div class="bg-base-200 rounded-lg p-2 text-left">
+                Hi there! 👋
+              </div>
+            </div>
+            <div class="flex justify-end mb-2">
+              <img src="https://placehold.co/60x60" alt="Profile Avatar" class="w-8 h-8 rounded-full mr-2">
+              <div class="bg-primary rounded-lg p-2 text-white text-right">
+                How can I help you today?
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center border-t border-gray-300">
+            <input type="text" placeholder="Type your message..." class="bg-base-200 rounded-lg p-2 flex-grow focus:outline-none" id="message-input">
+            <button class="btn btn-primary rounded-full p-2 ml-2" id="send-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">     
+                <path d="M15.964.686a.5.5 0 0 0-.498-.498l-5.11-5.11a.5.5 0 0 0-.707.707L14.25 9.293l-1.147 1.147a.5.5 0 0 0 .707.707l5.11-5.11a.5.5 0 0 0 .498-.498z" />
+                <path d="M3 6.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-1zm.5 6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const messageInput = document.getElementById('message-input');
+    const sendButton = document.getElementById('send-button');
+    const chatMessages = document.getElementById('chat-messages');
+
+    sendButton.addEventListener('click', () => {
+      const message = messageInput.value.trim();
+      if (message !== '') {
+        const newMessage = document.createElement('div');
+        newMessage.classList.add('flex', 'justify-end', 'mb-2');
+        newMessage.innerHTML = `
+          <img src="https://placehold.co/60x60" alt="Profile Avatar" class="w-8 h-8 rounded-full mr-2">
+          <div class="bg-primary rounded-lg p-2 text-white text-right">
+            ${message}
+          </div>
+        `;
+        chatMessages.appendChild(newMessage);
+        messageInput.value = '';
+      }
+    });
+  </script>
+</body>
+</html>

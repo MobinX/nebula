@@ -89,6 +89,7 @@ export class Team {
             return;
         }
     }
+    
     async setupCommunication() {
         log(`[Team] Setting up communication`);
 
