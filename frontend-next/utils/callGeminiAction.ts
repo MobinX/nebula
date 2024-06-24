@@ -16,6 +16,7 @@ export const generateGemini = async (history: ChatHistory[]) => {
         //   const apires = await fetch("https://x.mobin.workers.dev/api/key")
         //   const apikey = (await apires.json()).apikey;
           const apikey = "AIzaSyDuLm-355pBvS3wgtHGG2Rv0zYICHjRgsM"
+          
         // console.log("[callGemini] History: ");
         // console.log(util.inspect(history, { showHidden: false, depth: null }));
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apikey}`, {
