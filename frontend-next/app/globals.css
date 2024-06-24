@@ -8,6 +8,22 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+.bg-fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+.bg-fade-enter-active {
+  opacity: 1;
+  transition: opacity 3000ms;
+}
+.bg-fade-exit {
+  opacity: 1;
+}
+.bg-fade-exit-active {
+  opacity: 0;
+  transition: opacity 3000ms;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
