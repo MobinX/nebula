@@ -179,7 +179,7 @@ Your msg sending allowed list:
       ]
     }
   ]     
-        I have to complete it using daisy ui and only daisyui colors.But i have to remain careful that i cant add  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" /> this line in code as the user load the daisyui in tailwind config automatically.Also i dont import tailwind css in my code.I have to write code without those.I cant say i am working on it or I have got the plan.I can only reply with code.So I will only write the code and reply team-representative ONLY WITH CODE.MY REPLY ONLY CONTAIN CODE> ONLY ONLY CODEs.
+        I have to complete it using daisy ui and only daisyui colors.But i have to remain careful that I have to use daisyUI version 4.12.7 otherwise it will make compatible issues.I  cant say i am working on it or I have got the plan.I can only reply with code.So I will only write the code and reply code-renderer ONLY WITH CODE.MY REPLY ONLY CONTAIN CODE> ONLY ONLY CODEs.
 After planing, who should I send the plan?
 Ans:As the code needed to be rendered and get review from the users ,  so i sould send it to "code-renderer". so the in the json schema i should set 'code-renderer' as 'tergetCaller' for calling him." 
       "tergetCaller": "code-renderer",
@@ -189,7 +189,9 @@ Ans:As the code needed to be rendered and get review from the users ,  so i soul
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Cart</title>
-   <!------ no import for tailwind or daisyui assuming user will import it automatically ----->
+   <!------ Always use daisyui version 4.12.7  other wise it creates compatibility issue ----->
+   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.7/dist/full.min.css" rel="stylesheet" type="text/css" />
+   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
   <div class="container mx-auto px-4">
@@ -492,7 +494,7 @@ Your msg sending allowed list:
         }
       ]
         
-        .I have to complete it using daisy ui and only daisyui colors.But i have to remain careful that i cant add  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" /> this line in code as the user load the daisyui in tailwind config automatically.Also i dont import tailwind css in my code.I have to write code without those.I cant say i am working on it or I have got the plan.I can only reply with code.So I will only write the code and reply team-representative ONLY WITH CODE.MY REPLY ONLY CONTAIN CODE> ONLY ONLY CODEs.
+        .I have to complete it using daisy ui and only daisyui colors.But i have to remain careful that I have to use daisyUI version 4.12.7 otherwise it will make compatible issues.I  cant say i am working on it or I have got the plan.I can only reply with code.So I will only write the code and reply code-renderer ONLY WITH CODE.MY REPLY ONLY CONTAIN CODE> ONLY ONLY CODEs.
 After planing, who should I send the plan?
 Ans:As the code needed to be rendered and get review from the users , so i sould send it to "code-renderer". so the in the json schema i should set 'code-renderer' as 'tergetCaller' for calling him." 
       "tergetCaller": "code-renderer",
@@ -502,7 +504,9 @@ Ans:As the code needed to be rendered and get review from the users , so i sould
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Product Details Page</title>
-  <!------ no import for tailwind or daisyui assuming user will import it automatically ----->
+   <!------ Always use daisyui version 4.12.7  other wise it creates compatibility issue ----->
+   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.7/dist/full.min.css" rel="stylesheet" type="text/css" />
+   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
   <header class="bg-base-100 py-4 px-4 shadow-md">
@@ -598,6 +602,54 @@ Ans:As the code needed to be rendered and get review from the users , so i sould
 
 </body>
 </html>`
+    }
+  ]
+}
+
+================================================ Example 3=====================================
+Your msg sending allowed list:
+    client
+    team-representative
+    planner
+    code-renderer
+
+{
+  "calls": [
+    {
+        "thoughts":"I have received a detailed plan from the planner for a light-themed hero section. the plan :
+        [{"Name":"Step 1: What Components Does the 'light themed' Hero Section Need?","question":"What components 'light themed' should the hero section include?","answer":"The hero section should include:\n\nHero Image/Video\nMain Headline\nSubheadline\nCall to Action Buttons (Get Started, Learn More)"},{"Name":"Step 2: What Layout Should the Hero Section Have for Mobile and Desktop?","question":"What layout should the hero section have in mobile and desktop views?","answer":"Mobile Layout: Flex column (flex-col), centered text\nDesktop Layout: Flex row (flex-row), split-screen (image/video on one side, text on the other)\nSpacing: Padding 24px, Margin 16px top and bottom"},{"Name":"Step 3: How Should the Components in the Hero Section Be Styled and Arranged?","question":"How should the hero image/video be styled and arranged in mobile and desktop views?","answer":"Media: Full width for mobile, half width for desktop\nMobile Layout: Margin-bottom 16px (mb-16)\nDesktop Layout: Margin-right 16px (mr-16)"},{"Name":"Step 3: How Should the Components in the Hero Section Be Styled and Arranged?","question":"How should the main headline be styled?","answer":"Text: Large, bold font, dark color (e.g., text-gray-900) for contrast against the light background"},{"Name":"Step 3: How Should the Components in the Hero Section Be Styled and Arranged?","question":"How should the subheadline be styled?","answer":"Text: Medium, regular font, dark color (e.g., text-gray-700) for contrast against the light background"},{"Name":"Step 3: How Should the Components in the Hero Section Be Styled and Arranged?","question":"How should the call to action buttons be styled and arranged?","answer":"Buttons: Large size, distinct colors for each\nMobile Layout: Full width (w-full), margin-bottom 4px (mb-4)\nDesktop Layout: Auto width (w-auto), side by side"}]
+        Now, I need to start developing the frontend using DaisyUI and Tailwind CSS.As the plan requires a light theme so i need to set data-theme='light' as attribute in 'body' like <body class="bg-base-100" data-theme="light">
+
+
+Who should I send the completed code to?
+
+Answer: The completed code should be sent to the 'code-renderer' so they can render it for client review. I will set 'code-renderer' as 'targetCaller' in the JSON schema."
+         "tergetCaller": "code-renderer",
+      "msg": `You know i only reply with code this is code.:<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agency Landing Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.7/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-base-100" data-theme="light">
+  <section class="hero bg-base-100 py-20 px-4">
+    <div class="hero-content flex-col lg:flex-row-reverse">
+      <div class="text-center lg:text-left">
+        <h1 class="text-5xl font-bold text-gray-900">Welcome to Our AI Agency</h1>
+        <p class="py-6 text-lg text-gray-700">We help businesses leverage the power of artificial intelligence to achieve their goals. Our team of experts provides tailored solutions to streamline operations, enhance customer experiences, and drive innovation.</p>
+        <button class="btn btn-primary btn-lg">Get Started</button>
+        <button class="btn btn-secondary btn-lg ml-4">Learn More</button>
+      </div>
+      <div class="lg:ml-20">
+        <img src="https://placehold.co/600x400" alt="AI Agency Hero Image" class="rounded-lg shadow-2xl">
+      </div>
+    </div>
+  </section>
+</body>
+</html>"
     }
   ]
 }

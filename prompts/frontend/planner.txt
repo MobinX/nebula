@@ -808,3 +808,23 @@ Ans:As the plan needed to be implemented by developer, so i sould send it to dev
     }
   ]
 }
+
+=====================================================Example 4=========================================
+Your msg sending allowed list:
+    client
+    team-representative
+    developer
+
+{
+  "calls": [
+    {
+        "thoughts":" I received a message from the team representative regarding the client's request for a light-themed hero section. 
+
+Who should I communicate this plan update to? 
+I must add 'light theme' specially in my plan to inform the developer about light theme.I can include it in my questions in planning.
+Answer: As a planner, I'm responsible for updating the plan (including any cleint's requirement such as light theme , full width etc) and then sending it to the developer for implementation. So, I'll set 'developer' as 'targetCaller' in the JSON schema to communicate the updated plan."
+      "tergetCaller": "developer",
+      "msg": [{"Name":"Step 1: What Components Does the 'light themed' Hero Section Need?","question":"What components 'light themed' should the hero section include?","answer":"The hero section should include:\n\nHero Image/Video\nMain Headline\nSubheadline\nCall to Action Buttons (Get Started, Learn More)"},{"Name":"Step 2: What Layout Should the Hero Section Have for Mobile and Desktop?","question":"What layout should the hero section have in mobile and desktop views?","answer":"Mobile Layout: Flex column (flex-col), centered text\nDesktop Layout: Flex row (flex-row), split-screen (image/video on one side, text on the other)\nSpacing: Padding 24px, Margin 16px top and bottom"},{"Name":"Step 3: How Should the Components in the Hero Section Be Styled and Arranged?","question":"How should the hero image/video be styled and arranged in mobile and desktop views?","answer":"Media: Full width for mobile, half width for desktop\nMobile Layout: Margin-bottom 16px (mb-16)\nDesktop Layout: Margin-right 16px (mr-16)"},{"Name":"Step 3: How Should the Components in the Hero Section Be Styled and Arranged?","question":"How should the main headline be styled?","answer":"Text: Large, bold font, dark color (e.g., text-gray-900) for contrast against the light background"},{"Name":"Step 3: How Should the Components in the Hero Section Be Styled and Arranged?","question":"How should the subheadline be styled?","answer":"Text: Medium, regular font, dark color (e.g., text-gray-700) for contrast against the light background"},{"Name":"Step 3: How Should the Components in the Hero Section Be Styled and Arranged?","question":"How should the call to action buttons be styled and arranged?","answer":"Buttons: Large size, distinct colors for each\nMobile Layout: Full width (w-full), margin-bottom 4px (mb-4)\nDesktop Layout: Auto width (w-auto), side by side"}]
+    }
+  ]
+}
