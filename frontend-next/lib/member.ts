@@ -1,9 +1,16 @@
 import { sys } from "typescript";
-import { readFileSync } from "fs";
-import { generateGemini, historyManager, type historyManagerType } from "../utils/callGemini";
+// import { readFileSync } from "fs";
+
+import {  historyManager, type historyManagerType } from "../utils/callGemini";
+import { generateGemini } from "../utils/callGeminiAction";
 import { log } from "../utils/log";
 import { loadPrompts } from "../utils/loadPrompts";
 //ai team member initalizers 
+
+//dummy implementation of readFileSync
+const readFileSync = (file: string, encoding: string) => {
+    return "";
+}
 export interface MemberType {
     role: string;
     roleDescription: string;
@@ -20,27 +27,8 @@ export interface MemberOutput {
 
 export const Member = async (memeberInfo: MemberType): Promise<MemberOutput> => {
     //first get system prompt
-    let systemPrompt = "";
-    if (memeberInfo.promptSrc === "file") {
-        try {
-            //read file
-            systemPrompt = readFileSync(memeberInfo.systemPrompt, 'utf8');
-        } catch (e) {
-            console.log("[Member] Error reading file: ", e);
-            throw e;
-        }
-    } else if (memeberInfo.promptSrc === "url") {
-        try {
-            const response = await fetch(memeberInfo.systemPrompt);
-            systemPrompt = await response.text();
-        } catch (e) {
-            console.log("[Member] Error fetching url: ", e);
-            throw e;
-        }
-    } else if (memeberInfo.promptSrc === "text") {
-        systemPrompt = memeberInfo.systemPrompt;
-    }
-
+    let systemPrompt = (await loadPrompts(memeberInfo.promptSrc, memeberInfo.systemPrompt)).prompt;
+    
     const memberChatHistory = historyManager;
     return {
         chatHistory: memberChatHistory,
@@ -101,8 +89,36 @@ export const client = async (rl: any): Promise<MemberOutput> => {
 };
 
 
+export const clientWeb = async (onCall:Function): Promise<MemberOutput> => {
+    //first get system prompt
 
-export const codeRenderer = async (rl: any): Promise<MemberOutput> => {
+
+    const memberChatHistory = historyManager;
+    return {
+        chatHistory: memberChatHistory,
+        role: "client",
+        roleDescription: "Client is the person , for whom the team is working for. The client can send messages to the team members and get the response from the team members",
+        setUpCommunication: (members: Map<string, MemberOutput>,comPrompt:string) => {
+
+        },
+        call: async (from: string, msg: any) => {
+            try {
+                memberChatHistory.add("user", `${from} has sent you a msg: ${msg}`);
+                const response: any = await onCall('${from} has sent you a msg:" + ${msg}');
+                memberChatHistory.add("model", response);
+                return { calls: [{ tergetCaller: "team-representative", msg: response }] };
+            } catch (e) {
+                console.log("[Member] Error in member call: ", e);
+                throw e;
+            }
+        },
+    };
+};
+
+
+
+
+export const codeRendererWeb = async (onCall:Function): Promise<MemberOutput> => {
     //first get system prompt
 
 
@@ -117,7 +133,7 @@ export const codeRenderer = async (rl: any): Promise<MemberOutput> => {
         call: async (from: string, msg: any) => {
             try {
                 memberChatHistory.add("user", `${from} has sent you a msg: ${msg}`);
-                const response: any = await prompt(rl, '${from} has sent you the code review it.: ${msg}');
+                const response: any = await onCall('${from} has sent you a msg:" + ${msg}');
                 memberChatHistory.add("model", response);
                 return { calls: [{ tergetCaller: "developer", msg: response }] };
             } catch (e) {

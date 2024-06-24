@@ -1,25 +1,17 @@
-import { readFileSync } from "fs";
+"use server"
 
-export const loadPrompts = async (promptSrc: "file" | "url" | "text", prompt: string): Promise<string> => {
+export const loadPrompts = async (promptSrc: "file" | "url" | "text", prompt: string): Promise<{prompt:string}> => {
     
-    if (promptSrc === "file") {
-        try {
-            //read file
-            return readFileSync(prompt, 'utf8');
-        } catch (e) {
-            console.log("[loadPrompts] Error reading file: ", e);
-            throw e;
-        }
-    } else if (promptSrc === "url") {
+    if (promptSrc === "url") {
         try {
             const response = await fetch(prompt);
-            return await response.text();
+            return {prompt:await response.text()};
         } catch (e) {
             console.log("[loadPrompts] Error fetching url: ", e);
             throw e;
         }
     } else if (promptSrc === "text") {
-        return prompt;
+        return {prompt:prompt};
     }
-    return "";
+    return {prompt:""};
 }

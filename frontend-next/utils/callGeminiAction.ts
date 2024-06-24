@@ -1,44 +1,11 @@
-
+"use server"
 import * as util from 'util';
-
 interface ChatHistory {
     role: "user" | "model" | "system";
     parts: {
         text: string;
     }[];
 }
-
-//function for converting any object or number to string
-export function toString(value: any): string {
-    return value.toString();
-}
-export interface historyManagerType {
-    history: ChatHistory[];
-    add: (role: "user" | "model" | "system", text: string | object) => void;
-    clear: () => void;
-}
-export const historyManager: historyManagerType = {
-    history: [] as ChatHistory[],
-    add: function (role: "user" | "model" | "system", text: string | object) {
-        try {
-            this.history.push({
-                role: role,
-                parts: [
-                    {
-                        text: typeof text === "string" ? text : JSON.stringify(text)
-                    }
-                ]
-            });
-        }
-        catch (e) {
-            console.log("[historyManager] Error adding to history: (text must be json serializable) ", e);
-        }
-    },
-    clear: function () {
-        this.history = [];
-    }
-}
-
 
 export const generateGemini = async (history: ChatHistory[]) => {
 
@@ -103,8 +70,8 @@ export const generateGemini = async (history: ChatHistory[]) => {
         } catch (error) {
             console.error("Error parsing JSON from buffer:", error);
         }
-        // console.log("[callGemini] Data: ");
-        // console.lPriyanshu Kistalekar. og(util.inspect(data, { showHidden: false, depth: null }));
+        console.log("[callGemini] Data: ");
+        console.log(util.inspect(data, { showHidden: false, depth: null }));
         if (data?.candidates) {
             return (JSON.parse(data.candidates[0].content.parts[0].text));
         }
@@ -114,7 +81,3 @@ export const generateGemini = async (history: ChatHistory[]) => {
         return "ERROR";
     }
 }
-
-
-
-
