@@ -43,18 +43,22 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       setVisibleBg((prev) => (prev === 0 ? 1 : 0)); // Toggle visible background
+      setTimeout(() => {
       setImageIndex((prev) => (prev + 1) % images.length);
-    }, 3000); // Increase interval to allow fade in and out
+        
+      }, 1500);
+    }, 6000); // Increase interval to allow fade in and out
     return () => clearInterval(interval);
   }, []);
 
   // Adjust the return statement to include two divs for the backgrounds
  return (
   <main className="flex min-h-screen flex-col items-center justify-between p-24 w-full relative">
-    <div className={`absolute inset-0 bg-no-repeat bg-cover bg-center transition-opacity duration-3000 ${visibleBg === 0 ? 'bg-fade-enter-active' : 'bg-fade-exit-active'}`} style={{backgroundImage: `url(${images[imageIndex % images.length]})`}}></div>
-    <div className={`absolute inset-0 bg-no-repeat bg-cover bg-center transition-opacity duration-3000 ${visibleBg === 1 ? 'bg-fade-enter-active' : 'bg-fade-exit-active'}`} style={{backgroundImage: `url(${images[(imageIndex + 1) % images.length]})`}}></div>
+    <div className={`absolute inset-0 bg-no-repeat bg-cover bg-center transition-opacity  duration-3000 ${visibleBg === 0 ? 'bg-fade-enter-active' : 'bg-fade-exit-active'}`} style={{backgroundImage: `url(${images[imageIndex % images.length]})`}}></div>
+    <div className={`absolute inset-0 bg-no-repeat bg-cover bg-center transition-opacity  duration-3000 ${visibleBg === 1 ? 'bg-fade-enter-active' : 'bg-fade-exit-active'}`} style={{backgroundImage: `url(${images[(imageIndex + 1) % images.length]})`}}></div>
     {/* Foreground Content */}
-    <div className="relative z-10">
+    <div className="relative z-10 backdrop-blur-md bg-white/30">
+    
       {/* Your foreground content here */}
       hi
     </div>
