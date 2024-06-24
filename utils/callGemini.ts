@@ -89,8 +89,8 @@ export const generateGemini = async (history: ChatHistory[]) => {
             const { done, value } = await reader.read();
             if (done) break;
             let valueStr = decoder.decode(value, { stream: true });
-            buffer += decoder.decode(value, { stream: true });
-            console.log(buffer);
+            buffer += valueStr
+            console.log(valueStr);
         }
         let data = null;
         try {

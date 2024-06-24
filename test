@@ -589,3 +589,54 @@
   </script>
 </body>
 </html>
+
+==============================================msg 2======================================
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat UI</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.7/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-base-100" data-theme="light">
+  <div class="container mx-auto p-4">
+    <div class="card w-full rounded-xl shadow-md bg-base-100">
+      <div class="card-body">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="card-title">Chat with User</h2>
+          <button class="btn btn-sm btn-circle btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="chat-messages overflow-y-auto h-64">
+          <div class="flex justify-start mb-4">
+            <img src="https://placehold.co/40x40" alt="User Avatar" class="w-8 h-8 rounded-full mr-4">
+            <div class="bg-primary text-white p-4 rounded-lg rounded-br-none">
+              <p>Hello! How can I help you today?</p>
+            </div>
+          </div>
+          <div class="flex justify-end mb-4">
+            <img src="https://placehold.co/40x40" alt="User Avatar" class="w-8 h-8 rounded-full mr-4">
+            <div class="bg-base-200 text-gray-800 p-4 rounded-lg rounded-bl-none">
+              <p>I'm looking for information about your products.</p>
+            </div>
+          </div>
+          <div class="flex justify-start mb-4">
+            <img src="https://placehold.co/40x40" alt="User Avatar" class="w-8 h-8 rounded-full mr-4">
+            <div class="bg-primary text-white p-4 rounded-lg rounded-br-none">
+              <p>Sure, I can help with that.  What are you interested in?</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center mt-4">
+          <input type="text" placeholder="Type your message..." class="input input-bordered w-full mr-2" />
+          <button class="btn btn-primary">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

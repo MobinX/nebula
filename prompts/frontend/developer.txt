@@ -196,7 +196,7 @@ Ans:As the code needed to be rendered and get review from the users ,  so i soul
    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.7/dist/full.min.css" rel="stylesheet" type="text/css" />
    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body data-theme="light">
   <div class="container mx-auto px-4">
     <header class="bg-primary text-white p-4 rounded-md mb-4">
       <div class="flex  items-center flex-row justify-between">
@@ -511,7 +511,7 @@ Ans:As the code needed to be rendered and get review from the users , so i sould
    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.7/dist/full.min.css" rel="stylesheet" type="text/css" />
    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body data-theme="light">
   <header class="bg-base-100 py-4 px-4 shadow-md">
     <div class="flex items-center justify-between">
       <div class="flex items-center">
