@@ -32,7 +32,7 @@ const prompt = (rl: any, query: any) => new Promise((resolve) => rl.question(que
 
 let memberInfo:MemberType[] = [
     {
-        role: "team-representative",
+        role: "representative",
         roleDescription: "The  team representative who is responsible for the team communication and coordination with client and send orders to the other team members",
         systemPrompt: "prompts/frontend/representative.txt",
         promptSrc: "file"
@@ -62,8 +62,8 @@ frontendTeam.setupCommunication();
 
 console.log(frontendTeam.getMembers());
 
-// frontendTeam.call("client","team-representative", "Hello team representative, I am the client. I need a website with 3 pages: Home, About, Contact. I want to use TailwindCSS for styling. Can you help me with that?");
+// frontendTeam.call("client","representative", "Hello team representative, I am the client. I need a website with 3 pages: Home, About, Contact. I want to use TailwindCSS for styling. Can you help me with that?");
 
 prompt(rl, "How can we help you today ?").then((response) => {
-    frontendTeam.call("client","team-representative", response);
+    frontendTeam.call("client","representative", response);
 });

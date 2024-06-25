@@ -44,6 +44,7 @@ export const generateGemini = async (history: ChatHistory[]) => {
     try {
         const apires = await fetch("https://x.mobin.workers.dev/api/key")
         const apikey = (await apires.json()).apikey;
+        // const apikey = "AIzaSyDuLm-355pBvS3wgtHGG2Rv0zYICHjRgsM"
         // console.log(apikey)
         // console.log("[callGemini] History: ");
         // console.log(util.inspect(history, { showHidden: false, depth: null }));

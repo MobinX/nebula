@@ -5,14 +5,28 @@ export interface Msg {
     timestamp: string;
 }
 
-const SelfMessage = ({ msg, state = "" }: { msg: string, state: string }) => {
+const SelfMessage = ({ msg, state = ""}: { msg: string, state?: string}) => {
     return (
         <div className="flex items-start w-full">
-            <div className="flex flex-col items-center gap-2">
-                <div className="bg-blue-500 text-white px-4 py-2 rounded-lg rounded-bl-none ml-auto w-3/5">
-                    {msg}
+            <div className="flex flex-col items-center gap-1 w-full">
+                <div className="bg-blue-500 text-white px-4 py-2 rounded-2xl rounded-br-none ml-auto w-3/5flex flex-col gap-1">
+                    
+                    <p>{msg}</p>
                 </div>
-                <div className="text-sm text-gray-500 w-full text-right">{state}</div>
+                <div className="text-xs text-gray-500 w-full text-right px-1">{state}</div>
+            </div>
+        </div>
+    )
+}
+const OtherMessage = ({ msg, state = "" ,from}: { msg: string, state?: string,from:string }) => {
+    return (
+        <div className="flex items-start justify-end w-full">
+            <div className="flex flex-col items-end gap-1 w-full">
+                <div className="bg-gray-200 text-gray-800 px-4 py-2 rounded-2xl rounded-bl-none mr-auto w-3/5 flex flex-col gap-1">
+                    <p className="text-xs font-semibold">{from}</p>
+                    <p>{msg}</p>
+                </div>
+                <div className="text-xs text-gray-500  text-right px-1 mr-auto">{state}</div>
             </div>
         </div>
     )
@@ -32,7 +46,8 @@ export default function MessageCard({ msg }: { msg: Msg[] }) {
                 </div>
 
                 <div className="px-4 py-6 space-y-6 overflow-y-auto max-h-[400px]">
-
+                    <SelfMessage msg="Hello"  state="11:30PM" />
+                    <OtherMessage msg="Hi" state="11:30PM" from="representative"/>
 
                     <div className="flex items-start justify-end">
                         <div className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg rounded-br-none mr-auto">

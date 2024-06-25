@@ -33,7 +33,7 @@ export default function Home() {
       }));
       await team.setupCommunication();
       // setTimeout(() => {
-      // team.call("client", "team-representative", "I need a hero section");
+      // team.call("client", "representative", "I need a hero section");
       // }, 1000);
     }
     // initTeam();

@@ -26,7 +26,7 @@ Example:
 =====================================================Example 1=========================================
 Your msg sending allowed list:
     client
-    team-representative
+    representative
     developer
 
 {
@@ -430,7 +430,7 @@ Ans:As the plan needed to be implemented by developer, so i sould send it to dev
 =====================================================Example 2=========================================
 Your msg sending allowed list:
     client
-    team-representative
+    representative
     coder
 
 {
@@ -578,7 +578,7 @@ Ans:As the plan needed to be implemented by coder, so i sould send it to coder. 
 =====================================================Example 3=========================================
 Your msg sending allowed list:
     client
-    team-representative
+    representative
     developer
 -
 {
@@ -812,7 +812,7 @@ Ans:As the plan needed to be implemented by developer, so i sould send it to dev
 =====================================================Example 4=========================================
 Your msg sending allowed list:
     client
-    team-representative
+    representative
     developer
 
 {

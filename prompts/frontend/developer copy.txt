@@ -40,7 +40,7 @@ Example:
 =====================================================Example 1=========================================
 Your msg sending allowed list:
     client
-    team-representative
+    representative
     planner
     code-renderer
 
@@ -271,7 +271,7 @@ Ans:As the code needed to be rendered and get review from the users ,  so i soul
 =====================================================Example 2=========================================
 Your msg sending allowed list:
     client
-    team-representative
+    representative
     planner
     code-renderer
 
@@ -612,7 +612,7 @@ Ans:As the code needed to be rendered and get review from the users , so i sould
 ================================================ Example 3=====================================
 Your msg sending allowed list:
     client
-    team-representative
+    representative
     planner
     code-renderer
 
@@ -660,7 +660,7 @@ Answer: The completed code should be sent to the 'code-renderer' so they can ren
 ================================================ Example 4=====================================
 Your msg sending allowed list:
     client
-    team-representative
+    representative
     planner
     code-renderer
 

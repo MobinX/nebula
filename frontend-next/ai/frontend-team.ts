@@ -2,7 +2,7 @@ import { MemberType } from "@/lib/member";
 
 export const memberInfo:MemberType[] = [
     {
-        role: "team-representative",
+        role: "representative",
         roleDescription: "The  team representative who is responsible for the team communication and coordination with client and send orders to the other team members",
         systemPrompt: "https://raw.githubusercontent.com/MobinX/nebula/main/prompts/frontend/representative.txt",
         promptSrc: "url"
