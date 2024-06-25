@@ -9,10 +9,12 @@ export class Team {
     name: string;
     members: Map<string, MemberOutput>;
     log:Function;
-    constructor(name: string,log:Function) {
+    showMsg:Function;
+    constructor(name: string,log:Function,showMsg:Function) {
         this.members = new Map();
         this.name = name;
         this.log = log;
+        this.showMsg = showMsg;
         this.log(`[Team] Created team: ${name}`);
 
     }
@@ -40,13 +42,14 @@ export class Team {
         const member = this.members.get(role);
         if (member) {
             try {
-                this.log(`[Team] ${from}  calling member: ${role}  with message: ${msg}`);
                 if(from == role){
                     this.log(`[Team] Error calling member: ${role}, you can not call yourself... Retrying...`); 
                     await this.call("system",role, `you can not call yourself,rather call the acurate person you need to call, this is list of persons you are only allowed to call: ${this.getMemeberListExceptRole(role)} respected member please try again the last message and give replay according to schema`);
                     return;
                 }
+                this.log(`[Team] ${from} calling ${role}: ${msg}`);
                 let response = await member.call(from,msg);
+                this.showMsg(from,role,msg)
                 if (response == "ERROR") {
                     this.log(`[Team] Error calling member: ${role},Retrying...`);
                     await this.call("system",role, "There is a error happened in system,may be JSON Parser  failed to parse you msg string,double check if you the correctly using escapped quetos,if not please rewrite the respone,remember you must make atleast one 'calls' with 'tergetCaller' and 'msg' to call any member even the client, respected member please try again the last message and give replay according to schema");
@@ -73,6 +76,7 @@ export class Team {
                     this.log(`[Team] ${role}'s thought: ${call.thoughts}`)
                     if(typeof call.msg != "string"){
                     await this.call(role,call.tergetCaller, JSON.stringify(call.msg));
+
                     }
                     else{
                         await this.call(role,call.tergetCaller, call.msg);

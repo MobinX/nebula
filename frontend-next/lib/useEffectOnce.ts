@@ -7,7 +7,7 @@ export function useEffectOnce(effect: EffectCallback) {
   useEffect(() => {
     if (!initialized.current) {
       initialized.current = true
-      effect()
+      return effect();
     }
   }, [])
 }

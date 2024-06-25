@@ -18,11 +18,12 @@ export const generateGemini = async (history: ChatHistory[]) => {
           const apikey = "AIzaSyDuLm-355pBvS3wgtHGG2Rv0zYICHjRgsM"
 
         console.log("[callGemini] History: ");
-        console.log(util.inspect(history, { showHidden: false, depth: null }));
+        console.log(util.inspect(history[history.length - 1], { showHidden: false, depth: null }));
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apikey}`, {
             method: 'POST',
             mode: "no-cors",
-            headers: {
+            headers: {                                                                                            
+                
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
