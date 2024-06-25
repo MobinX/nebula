@@ -19,20 +19,31 @@ export interface historyManagerType {
 }
 export const historyManager: historyManagerType = {
     history: [] as ChatHistory[],
-    add: function (role: "user" | "model" | "system", text: string | object) {
+    add: function (role: "user" | "model" | "system", texti: string | object) {
         try {
             this.history.push({
                 role: role,
                 parts: [
                     {
-                        text: typeof text === "string" ? text : JSON.stringify(text)
+                        text: (typeof texti === "string") ? texti : JSON.stringify(texti)
+                    }
+                ]
+            });
+            console.log( "[historyManager] Added to history: " + role );
+            console.log(util.inspect(this.history[this.history.length - 1], { showHidden: false, depth: null }));
+        }
+        catch (e) {
+            console.log("[historyManager] Error adding to history: (text must be json serializable) ", e)
+            this.history.push({
+                role: role,
+                parts: [
+                    {
+                        text: "ERROR IN JSON"
                     }
                 ]
             });
         }
-        catch (e) {
-            console.log("[historyManager] Error adding to history: (text must be json serializable) ", e);
-        }
+        
     },
     clear: function () {
         this.history = [];

@@ -21,6 +21,7 @@ export interface MemberOutput {
     chatHistory: historyManagerType; // Replace with the appropriate type
     role: string;
     roleDescription: string;
+    noNeedReply? : boolean;
     call: (from: string, msg: any) => Promise<any>;
     setUpCommunication: (members: Map<string, MemberOutput>,comPrompt:string) => void // Replace with the appropriate type
 }
@@ -49,7 +50,7 @@ export const Member = async (memeberInfo: MemberType): Promise<MemberOutput> => 
         call: async (from: string, msg: any) => {
             try {
                 memberChatHistory.add("user", `Hey ${memeberInfo.role}, ${from} has sent you a msg: ${msg}`);
-                const response = await generateGemini(memberChatHistory.history);
+                const response = await generateGemini(memberChatHistory.history,(memeberInfo.role == "representative"))
                 memberChatHistory.add("model", response);
                 return response;
             } catch (e) {
@@ -70,6 +71,7 @@ export const client = async (rl: any): Promise<MemberOutput> => {
     return {
         chatHistory: memberChatHistory,
         role: "client",
+        noNeedReply: true,
         roleDescription: "Client is the person , for whom the team is working for. The client can send messages to the team members and get the response from the team members",
         setUpCommunication: (members: Map<string, MemberOutput>,comPrompt:string) => {
 
@@ -97,6 +99,7 @@ export const clientWeb = async (onCall:Function): Promise<MemberOutput> => {
     return {
         chatHistory: memberChatHistory,
         role: "client",
+        noNeedReply: true,
         roleDescription: "Client is the person , for whom the team is working for. The client can send messages to the team members and get the response from the team members",
         setUpCommunication: (members: Map<string, MemberOutput>,comPrompt:string) => {
 
@@ -105,8 +108,9 @@ export const clientWeb = async (onCall:Function): Promise<MemberOutput> => {
             try {
                 memberChatHistory.add("user", `${from} has sent you a msg: ${msg}`);
                 const response: any = await onCall('${from} has sent you a msg:" + ${msg}');
-                memberChatHistory.add("model", response);
-                return { calls: [{ tergetCaller: "representative", msg: response }] };
+                // memberChatHistory.add("model", response);
+                // return { calls: [{ tergetCaller: "representative", msg: response }] };
+                return {calls: [{ tergeCaller: "developer", msg: response }] }
             } catch (e) {
                 console.log("[Member] Error in member call: ", e);
                 throw e;
@@ -126,6 +130,7 @@ export const codeRendererWeb = async (onCall:Function): Promise<MemberOutput> =>
     return {
         chatHistory: memberChatHistory,
         role: "code-renderer",
+        noNeedReply: true,
         roleDescription: "Code renderer is the worker who is responsible for rendering the code to client for review. The code renderer can show the code to the client and get the feedback from the client. The code renderer can also send the code to the team members for review.",
         setUpCommunication: (members: Map<string, MemberOutput>,comPrompt:string) => {
 
@@ -134,8 +139,8 @@ export const codeRendererWeb = async (onCall:Function): Promise<MemberOutput> =>
             try {
                 memberChatHistory.add("user", `${from} has sent you a msg: ${msg}`);
                 const response: any = await onCall('${from} has sent you a msg:" + ${msg}');
-                memberChatHistory.add("model", response);
-                return { calls: [{ tergetCaller: "developer", msg: response }] };
+                // memberChatHistory.add("model", response);
+                return { calls: [{ tergeCaller: "developer", msg: response }] };
             } catch (e) {
                 console.log("[Member] Error in member call: ", e);
                 throw e;

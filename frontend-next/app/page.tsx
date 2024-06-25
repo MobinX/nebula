@@ -12,6 +12,7 @@ export default function Home() {
   const [logs, setLogs] = useState<string[]>([]);
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [teamInstance, setTeamInstance] = useState<Team | null>(null);
+  const [isClientAllowedInput, setIsClientAllowedInput] = useState<boolean>(true)
   const showMsg = (from: string, to: string, msg: string) => {
     setMsgs((prev) => [...prev, { from, to, msg, timestamp: new Date().toLocaleTimeString() }]);
   };
@@ -32,12 +33,10 @@ export default function Home() {
         await team.addMember(await Member(member));
       })
       team.addMember(await clientWeb(async (msg: string) => {
-        log(msg);
-        return prompt(msg);
+        setIsClientAllowedInput(true)
       }));
       team.addMember(await codeRendererWeb(async (msg: string) => {
-        log(msg);
-        return prompt(msg);
+        setIsClientAllowedInput(true)
       }));
       await team.setupCommunication();
       // setTimeout(() => {
@@ -54,7 +53,7 @@ export default function Home() {
     <BackgroundContainer>
       <div className="w-full h-full grid grid-cols-12 gap-4 items-center px-6 py-7">
         <div className="col-span-12 md:col-span-4 md:col-start-9">
-          <MessageCard msg={msgs} onMsgSend={msg => sendMsg(msg)} />
+          <MessageCard msg={msgs} onMsgSend={msg => sendMsg(msg)} setIsClientAllowedInput={state=>setIsClientAllowedInput(state)} isClientAllowedInput={isClientAllowedInput}/>
         </div>
       </div>
     </BackgroundContainer>
