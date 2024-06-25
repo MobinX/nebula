@@ -18,7 +18,7 @@ const MsgHeader = () => (
 
 const MsgContainer = ({ children }: { children: React.ReactNode }) => {
 
-    return (<div className="px-4 py-6 space-y-6 overflow-y-auto max-h-[400px] min-h-[67vh]"> {children} </div>)
+    return (<div className="px-4 py-6 space-y-6 overflow-y-auto h-full"> {children} </div>)
 }
 
 const SelfMessage = ({ msg, state = "" }: { msg: string, state?: string }) => {
@@ -52,7 +52,7 @@ export default function MessageCard({ msg, onMsgSend, setIsClientAllowedInput,is
     const [messages, setMessages] = useState<string>("")
     return (
         <div className="flex items-center justify-center h-full w-full">
-            <div className="w-full max-w-xs  bg-white shadow-md rounded-3xl">
+            <div className="w-full max-w-xs h-full flex flex-col  bg-white shadow-md rounded-3xl">
                 <MsgHeader />
                 <MsgContainer>
                     {msg.map((m, i) => {

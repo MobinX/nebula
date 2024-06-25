@@ -138,7 +138,7 @@ export const codeRendererWeb = async (onCall:Function): Promise<MemberOutput> =>
         call: async (from: string, msg: any) => {
             try {
                 memberChatHistory.add("user", `${from} has sent you a msg: ${msg}`);
-                const response: any = await onCall('${from} has sent you a msg:" + ${msg}');
+                const response: any = await onCall(msg);
                 // memberChatHistory.add("model", response);
                 return { calls: [{ tergeCaller: "developer", msg: response }] };
             } catch (e) {
