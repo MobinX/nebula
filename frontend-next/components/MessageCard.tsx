@@ -21,8 +21,6 @@ export default function MessageCard({ msg }: { msg: Msg[] }) {
                     <div className="flex items-start">
                         <div className="bg-blue-500 text-white px-4 py-2 rounded-lg rounded-bl-none ml-auto">
                             Hi Rahman. How are you?
-                            <br />
-                            I&aposm Good
                         </div>
                     </div>
                     <div className="text-sm text-gray-500 text-right">11:30 AM</div>
