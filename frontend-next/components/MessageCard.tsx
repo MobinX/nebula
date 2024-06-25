@@ -4,6 +4,20 @@ export interface Msg {
     msg: string;
     timestamp: string;
 }
+
+const SelfMessage = ({ msg, state = "" }: { msg: string, state: string }) => {
+    return (
+        <div className="flex items-start w-full">
+            <div className="flex flex-col items-center gap-2">
+                <div className="bg-blue-500 text-white px-4 py-2 rounded-lg rounded-bl-none ml-auto w-3/5">
+                    {msg}
+                </div>
+                <div className="text-sm text-gray-500 w-full text-right">{state}</div>
+            </div>
+        </div>
+    )
+}
+
 export default function MessageCard({ msg }: { msg: Msg[] }) {
     return (
         <div className="flex items-center justify-center h-full w-full">
@@ -18,12 +32,7 @@ export default function MessageCard({ msg }: { msg: Msg[] }) {
                 </div>
 
                 <div className="px-4 py-6 space-y-6 overflow-y-auto max-h-[400px]">
-                    <div className="flex items-start">
-                        <div className="bg-blue-500 text-white px-4 py-2 rounded-lg rounded-bl-none ml-auto">
-                            Hi Rahman. How are you?
-                        </div>
-                    </div>
-                    <div className="text-sm text-gray-500 text-right">11:30 AM</div>
+
 
                     <div className="flex items-start justify-end">
                         <div className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg rounded-br-none mr-auto">
@@ -32,7 +41,7 @@ export default function MessageCard({ msg }: { msg: Msg[] }) {
                             Thank you.
                         </div>
                     </div>
-                    <div className="text-sm text-gray-500 text-right">11:30 AM <span className="text-blue-500">✓✓</span></div>
+                    <div className="text-sm text-gray-500 ">11:30 AM <span className="text-blue-500">✓✓</span></div>
 
                     <div className="flex items-start">
                         <img src="https://via.placeholder.com/200x150" alt="Image" className="w-48 h-36 rounded-lg" />
