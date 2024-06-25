@@ -186,7 +186,7 @@ Your msg sending allowed list:
 After planing, who should I send the plan?
 Ans:As the code needed to be rendered and get review from the users ,  so i sould send it to "code-renderer". so the in the json schema i should set 'code-renderer' as 'tergetCaller' for calling him." 
       "tergetCaller": "code-renderer",
-      "msg": `You know i only reply with code this is code.:<!DOCTYPE html>
+      "msg": `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -501,7 +501,7 @@ Your msg sending allowed list:
 After planing, who should I send the plan?
 Ans:As the code needed to be rendered and get review from the users , so i sould send it to "code-renderer". so the in the json schema i should set 'code-renderer' as 'tergetCaller' for calling him." 
       "tergetCaller": "code-renderer",
-      "msg": `You know i only reply with code this is code.:<!DOCTYPE html>
+      "msg": `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -628,7 +628,7 @@ Who should I send the completed code to?
 
 Answer: The completed code should be sent to the 'code-renderer' so they can render it for client review. I will set 'code-renderer' as 'targetCaller' in the JSON schema."
          "tergetCaller": "code-renderer",
-      "msg": `You know i only reply with code this is code.:<!DOCTYPE html>
+      "msg": `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
