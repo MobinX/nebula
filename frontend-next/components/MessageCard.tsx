@@ -1,5 +1,6 @@
-import { Send } from "lucide-react";
-import { useState } from "react";
+import { Orbit, Send } from "lucide-react";
+import { useContext, useState } from "react";
+import { FlipContext } from "./CardFlipper";
 
 export interface Msg {
     from: string;
@@ -8,20 +9,29 @@ export interface Msg {
     timestamp: string;
 }
 
-const MsgHeader = () => (
-    <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
-        <div className="flex items-center gap-2">
-            <img src="https://via.placeholder.com/40" alt="Profile Picture" className="w-6 h-6 rounded-full" />
-            <h3 className="text-lg font-medium text-gray-500">Frontend Team</h3>
-        </div>
-    </div>)
+const MsgHeader = () => {
+    const { toggleFlip } = useContext(FlipContext);
+    return (
+        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+            <div className="flex items-center gap-2">
+                <img src="https://via.placeholder.com/40" alt="Profile Picture" className="w-6 h-6 rounded-full" />
+                <h3 className="text-lg font-medium text-gray-500">Frontend Team</h3>
+            </div>
+            <div className="flex items-center gap-2">
+                <div onClick={()=>toggleFlip()} className="">
+                    <Orbit className="w-6 h-6 text-gray-500" />
+                </div>
+
+            </div>
+        </div>)
+}
 
 const MsgContainer = ({ children }: { children: React.ReactNode }) => {
 
     return (<div className="px-4 py-6 space-y-6 overflow-y-auto h-full"> {children} </div>)
 }
 
-const SelfMessage = ({ msg, state = "",to }: { msg: string, state?: string,to:string }) => {
+const SelfMessage = ({ msg, state = "", to }: { msg: string, state?: string, to: string }) => {
     return (
         <div className="flex items-start w-full">
             <div className="flex flex-col items-center gap-1 w-full">

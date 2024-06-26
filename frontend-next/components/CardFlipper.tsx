@@ -1,14 +1,27 @@
 import { RefreshCcw } from "lucide-react"
+import React, { createContext, useContext, useState } from 'react';
 
-export function CardFlipper({ isFlipped, children }: { isFlipped: boolean, children: React.ReactNode }) {
+// Step 1: Create a Context
+export const FlipContext = createContext({
+    isFlipped: false,
+    toggleFlip: () => { },
+});
+
+// Step 2: Create a Provider Component
+
+export function CardFlipper({  children }: { children: React.ReactNode }) {
+    const [isFlipped, setIsFlipped] = useState(false);
+
+    const toggleFlip = () => {setIsFlipped(!isFlipped);console.log("toggled")}
+
     return (
-        <div className={`bg-transparent w-full h-full space-y-3`} style={{ perspective: "1000px" }}>
-            <div className="flex justify-center items-center relative w-full h-full transform transition-transform duration-700" style={{ transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)", transformStyle: "preserve-3d" }}>
-                {children}
+        <FlipContext.Provider value={{ isFlipped, toggleFlip }}>
+            <div className={`bg-transparent w-full h-full space-y-3`} style={{ perspective: "1000px" }}>
+                <div className="flex justify-center items-center relative w-full h-full transform transition-transform duration-700" style={{ transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)", transformStyle: "preserve-3d" }}>
+                    {children}
+                </div>
             </div>
-            
-
-        </div>
+        </FlipContext.Provider>
     )
 }
 

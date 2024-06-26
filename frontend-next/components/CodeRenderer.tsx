@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-export default function CodeViewer({ code }: { code: string }) {
+export default function CodeRenderer({ code }: { code: string }) {
     const iframeRef = useRef(null); // Step 2: Initialize the ref
     useEffect(() => {
         const iframe:any = iframeRef.current;

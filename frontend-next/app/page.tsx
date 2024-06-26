@@ -8,7 +8,7 @@ import { loadPrompts } from "@/utils/loadPrompts";
 import { useEffectOnce } from "@/lib/useEffectOnce";
 import BackgroundContainer from "@/components/backgroundContainer";
 import MessageCard, { Msg } from "@/components/MessageCard";
-import CodeViewer from "@/components/CodeViewer";
+import CodeRenderer from "@/components/CodeRenderer";
 import LogViewer from "@/components/LogViewer";
 import { CardBack, CardFace, CardFlipper } from "@/components/CardFlipper";
 export default function Home() {
@@ -58,10 +58,10 @@ export default function Home() {
     <BackgroundContainer>
       <div className="w-full h-full grid grid-cols-12 grid-rows-3  grid-flow-row gap-5 items-center px-6 py-10">
       <div className="col-span-12 row-span-3 md:col-span-8 hidden md:flex h-full">
-        <CodeViewer code={html || ""} />
+        <CodeRenderer code={html || ""} />
       </div>
         <div className="col-span-12 row-span-3 md:col-span-4 md:col-start-9 h-full">
-          <CardFlipper isFlipped={false}>
+          <CardFlipper>
             <CardFace>
               <MessageCard msg={msgs} onMsgSend={msg => sendMsg(msg)} setIsClientAllowedInput={state => setIsClientAllowedInput(state)} isClientAllowedInput={isClientAllowedInput} />
             </CardFace>
