@@ -22,7 +22,7 @@ export default function LogViewer({ logs }: { logs: string[] }) {
                     <ul className="space-y-4 text-left px-4  text-base-content text-sm">
                         {logs.map((log, i) => {
                             return (
-                                <li className="flex items-start text-w space-x-3 rtl:space-x-reverse">
+                                <li className="flex items-start text-w space-x-3 rtl:space-x-reverse" key={i}>
                                     <span>[*]</span>
                                     <span>{log}</span>
                                 </li>
