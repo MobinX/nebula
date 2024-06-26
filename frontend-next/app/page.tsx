@@ -61,7 +61,7 @@ export default function Home() {
         <CodeViewer code={html || ""} />
       </div>
         <div className="col-span-12 row-span-3 md:col-span-4 md:col-start-9 h-full">
-          <CardFlipper isFlipped={true}>
+          <CardFlipper isFlipped={false}>
             <CardFace>
               <MessageCard msg={msgs} onMsgSend={msg => sendMsg(msg)} setIsClientAllowedInput={state => setIsClientAllowedInput(state)} isClientAllowedInput={isClientAllowedInput} />
             </CardFace>

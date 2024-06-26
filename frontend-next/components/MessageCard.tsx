@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export interface Msg {
     from: string;
-    to?: string;
+    to: string;
     msg: string;
     timestamp: string;
 }
@@ -21,26 +21,26 @@ const MsgContainer = ({ children }: { children: React.ReactNode }) => {
     return (<div className="px-4 py-6 space-y-6 overflow-y-auto h-full"> {children} </div>)
 }
 
-const SelfMessage = ({ msg, state = "" }: { msg: string, state?: string }) => {
+const SelfMessage = ({ msg, state = "",to }: { msg: string, state?: string,to:string }) => {
     return (
         <div className="flex items-start w-full">
             <div className="flex flex-col items-center gap-1 w-full">
                 <div className="bg-primary text-white px-4 py-2 rounded-2xl rounded-br-none ml-auto w-4/5 flex flex-col gap-1">
 
-                    <p>{msg}</p>
+                    <p className="w-full break-words"><span className="text-primary-content">@{to}</span><br />{msg}</p>
                 </div>
                 <div className="text-xs text-gray-500 w-full text-right px-1">{state}</div>
             </div>
         </div>
     )
 }
-const OtherMessage = ({ msg, state = "", from }: { msg: string, state?: string, from: string }) => {
+const OtherMessage = ({ msg, state = "", from, to }: { msg: string, state?: string, from: string, to: string }) => {
     return (
         <div className="flex items-start justify-end w-full">
             <div className="flex flex-col items-end gap-1 w-full">
-                <div className="bg-gray-200 text-gray-800 px-4 py-2 rounded-2xl rounded-bl-none mr-auto w-4/5 flex flex-col gap-1">
+                <div className="bg-gray-200 text-gray-800 px-4 py-2 text-wrap rounded-2xl rounded-bl-none mr-auto w-4/5 flex flex-col gap-1">
                     <p className="text-xs font-semibold">{from}</p>
-                    <p>{msg}</p>
+                    <p className="w-full break-words"><span className="text-primary">@{to}</span><br />{msg}</p>
                 </div>
                 <div className="text-xs text-gray-500  text-right px-1 mr-auto">{state}</div>
             </div>
@@ -48,7 +48,7 @@ const OtherMessage = ({ msg, state = "", from }: { msg: string, state?: string, 
     )
 }
 
-export default function MessageCard({ msg, onMsgSend, setIsClientAllowedInput,isClientAllowedInput }: { msg: Msg[], onMsgSend: (arg0: string) => void,setIsClientAllowedInput:(arg0:boolean)=>void ,isClientAllowedInput:boolean}) {
+export default function MessageCard({ msg, onMsgSend, setIsClientAllowedInput, isClientAllowedInput }: { msg: Msg[], onMsgSend: (arg0: string) => void, setIsClientAllowedInput: (arg0: boolean) => void, isClientAllowedInput: boolean }) {
     const [messages, setMessages] = useState<string>("")
     return (
         <div className="flex items-center justify-center h-full w-full">
@@ -57,9 +57,9 @@ export default function MessageCard({ msg, onMsgSend, setIsClientAllowedInput,is
                 <MsgContainer>
                     {msg.map((m, i) => {
                         if (m.from === "client") {
-                            return <SelfMessage key={i} msg={m.msg} />
+                            return <SelfMessage key={i} msg={m.msg} to={m.to} />
                         } else {
-                            return <OtherMessage key={i} msg={m.msg} from={m.from} />
+                            return <OtherMessage key={i} msg={m.msg} from={m.from} to={m.to} />
                         }
                     })
                     }
