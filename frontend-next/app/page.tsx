@@ -9,6 +9,8 @@ import { useEffectOnce } from "@/lib/useEffectOnce";
 import BackgroundContainer from "@/components/backgroundContainer";
 import MessageCard, { Msg } from "@/components/MessageCard";
 import CodeViewer from "@/components/CodeViewer";
+import LogViewer from "@/components/LogViewer";
+import { CardBack, CardFace, CardFlipper } from "@/components/CardFlipper";
 export default function Home() {
   const [logs, setLogs] = useState<string[]>([]);
   const [msgs, setMsgs] = useState<Msg[]>([]);
@@ -59,7 +61,16 @@ export default function Home() {
         <CodeViewer code={html || ""} />
       </div>
         <div className="col-span-12 row-span-3 md:col-span-4 md:col-start-9 h-full">
-          <MessageCard msg={msgs} onMsgSend={msg => sendMsg(msg)} setIsClientAllowedInput={state=>setIsClientAllowedInput(state)} isClientAllowedInput={isClientAllowedInput}/>
+          <CardFlipper isFlipped={true}>
+            <CardFace>
+              <MessageCard msg={msgs} onMsgSend={msg => sendMsg(msg)} setIsClientAllowedInput={state => setIsClientAllowedInput(state)} isClientAllowedInput={isClientAllowedInput} />
+            </CardFace>
+            <CardBack>
+              <LogViewer logs={logs} />
+            </CardBack>
+          </CardFlipper>
+        {/* <MessageCard msg={msgs} onMsgSend={msg => sendMsg(msg)} setIsClientAllowedInput={state=>setIsClientAllowedInput(state)} isClientAllowedInput={isClientAllowedInput}/> */}
+        {/* <LogViewer  logs={logs}/> */}
         </div>
       </div>
     </BackgroundContainer>
