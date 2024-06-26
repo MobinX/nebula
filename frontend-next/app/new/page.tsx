@@ -1,9 +1,9 @@
 "use client"
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Member, clientWeb, codeRendererWeb, type MemberType } from "@/lib/member";
-import { Team } from "@/lib/team";
-import { memberInfo } from "@/ai/frontend-team";
+import { Member, clientWeb, codeRendererWeb, type MemberType } from "@/lib/v2/member";
+import { Team } from "@/lib/v2/team";
+import { memberInfo } from "@/ai/devx";
 import { loadPrompts } from "@/utils/loadPrompts";
 import { useEffectOnce } from "@/lib/useEffectOnce";
 import BackgroundContainer from "@/components/backgroundContainer";
@@ -18,8 +18,9 @@ export default function Home() {
   const [teamInstance, setTeamInstance] = useState<Team | null>(null);
   const [html, setHtml] = useState<string | null>(null)
   const [isClientAllowedInput, setIsClientAllowedInput] = useState<boolean>(true)
-  const showMsg = (from: string, to: string, msg: string) => {
-    setMsgs((prev) => [...prev, { from, to, msg, timestamp: new Date().toLocaleTimeString() }]);
+  const showMsg = (msgsx:Msg[]) => { console.log(msgsx);
+    setMsgs(msgsx);
+   
   };
   const sendMsg = async (msg: string) => {
     log(`client: ${msg}`);
