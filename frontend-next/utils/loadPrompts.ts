@@ -1,4 +1,3 @@
-"use server"
 
 export const loadPrompts = async (promptSrc: "file" | "url" | "text", prompt: string): Promise<{prompt:string}> => {
     

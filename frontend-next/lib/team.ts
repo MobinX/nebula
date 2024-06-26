@@ -105,7 +105,7 @@ export class Team {
     async setupCommunication() {
         this.log(`[Team] Setting up communication`);
 
-        let comPromt = await loadPrompts("url", "https://raw.githubusercontent.com/MobinX/nebula/main/prompts/communications.txt");
+        let comPromt = await loadPrompts("url", "prompts/communications.txt");
 
         //setup communication for each member
         for (const [role, member] of this.members) {

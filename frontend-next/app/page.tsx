@@ -11,6 +11,7 @@ import MessageCard, { Msg } from "@/components/MessageCard";
 import CodeRenderer from "@/components/CodeRenderer";
 import LogViewer from "@/components/LogViewer";
 import { CardBack, CardFace, CardFlipper } from "@/components/CardFlipper";
+import CodeViewer from "@/components/CodeViewer";
 export default function Home() {
   const [logs, setLogs] = useState<string[]>([]);
   const [msgs, setMsgs] = useState<Msg[]>([]);
@@ -57,9 +58,16 @@ export default function Home() {
   return (
     <BackgroundContainer>
       <div className="w-full h-full grid grid-cols-12 grid-rows-3  grid-flow-row gap-5 items-center px-6 py-10">
-      <div className="col-span-12 row-span-3 md:col-span-8 hidden md:flex h-full">
-        <CodeRenderer code={html || ""} />
-      </div>
+        <div className="col-span-12 row-span-3 md:col-span-8 hidden md:flex h-full">
+          <CardFlipper>
+            <CardFace>
+              <CodeRenderer code={html || ""} />
+            </CardFace>
+            <CardBack>
+              <CodeViewer code={html || ""} />
+            </CardBack>
+          </CardFlipper>
+        </div>
         <div className="col-span-12 row-span-3 md:col-span-4 md:col-start-9 h-full">
           <CardFlipper>
             <CardFace>
@@ -69,8 +77,8 @@ export default function Home() {
               <LogViewer logs={logs} />
             </CardBack>
           </CardFlipper>
-        {/* <MessageCard msg={msgs} onMsgSend={msg => sendMsg(msg)} setIsClientAllowedInput={state=>setIsClientAllowedInput(state)} isClientAllowedInput={isClientAllowedInput}/> */}
-        {/* <LogViewer  logs={logs}/> */}
+          {/* <MessageCard msg={msgs} onMsgSend={msg => sendMsg(msg)} setIsClientAllowedInput={state=>setIsClientAllowedInput(state)} isClientAllowedInput={isClientAllowedInput}/> */}
+          {/* <LogViewer  logs={logs}/> */}
         </div>
       </div>
     </BackgroundContainer>
