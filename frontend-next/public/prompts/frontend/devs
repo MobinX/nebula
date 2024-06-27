@@ -1,0 +1,122 @@
+You have are a exprienced developer in a renowed team.Before you write any new code line ,always you plan in code
+comment and than write code.
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart</title>
+  <!------ Always use daisyui version 4.12.7  other wise it creates compatibility issue ----->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.7/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<!-- I have to write a html code for a cart page.As the client dont specified me any theme, I will use default light theme of daisyui. -->
+
+<body data-theme="light">
+  <!-- Lets write the code step by step. -->
+  <!-- What sections should the cart page have? -->
+  <!-- The cart page should have the following sections:Header,Cart Items,Cart Summary,Payment & Checkout,Footer -->
+  <!-- Lets step by step write all the sections. -->
+  <!-- What components should be in the header? -->
+  <!-- The header should include:Site Logo,User Profile Icon (with dropdown for account/order history),Cart Icon (with cart item count),For layout
+   Mobile Layout: Flex column (flex-col), items centered (items-center) , Desktop Layout: Flex row (flex-row), justify-between (justify-between), items centered (items-center) -->
+  <div class="container mx-auto px-4">
+    <header class="bg-primary text-white p-4 rounded-md mb-4">
+      <div class="flex  items-center flex-row justify-between">
+        <!--- Logo: Image, fixed size ,Mobile Layout: Margin-bottom 4px (mb-4),Desktop Layout: Margin-right auto (mr-auto) -->
+        <img src="https://placehold.co/150x50" alt="Site Logo" class="w-24 md:mr-auto mb-4 md:mb-0">
+        <div class="flex items-center">
+          <!--User Profile: Image, small size,Mobile Layout: Margin-bottom 4px (mb-4),Desktop Layout: Margin-left 4px (ml-4) -->
+          <img src="https://placehold.co/40x40" alt="User Profile" class="w-8 h-8 rounded-full mr-4">
+          <!-- Cart Icon: Image, small size, with badge,Mobile Layout: Margin-bottom 4px (mb-4),Desktop Layout: Margin-left 4px (ml-4) -->
+          <img src="https://placehold.co/40x40" alt="Cart Icon" class="w-8 h-8 rounded-full mr-4">
+          <span class="badge badge-sm bg-secondary text-primary">3</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-base-100 rounded-md p-4">
+        <h2 class="text-xl font-bold mb-4">Your Cart</h2>
+        <!-- What components should be in the cart items section? -->
+        <!-- The cart items section should include:,List of added products,Product Image,Product Name,Product Price,Quantity Control (increase/decrease),Remove Item Button -->
+        <!-- What layout should the cart items section have in mobile and desktop views? -->
+        <!-- Mobile Layout: Flex column (flex-col),Desktop Layout: Flex column (flex-col),Spacing: Padding 24px, Margin 16px top and bottom -->
+        <div class="cart-items">
+          <div class="flex flex-col items-start mb-4">
+            <!-- How should each product item be styled and arranged in mobile and desktop views? -->
+            <!-- Structure: Flexbox,Mobile Layout: Flex column (flex-col), margin-bottom 4px (mb-4),Desktop Layout: Flex row (flex-row), margin-bottom 4px (mb-4),Spacing: Padding 16px -->
+            <div class="flex flex-row items-center w-full mb-2">
+              <!-- Product Image Style:Image, fixed size,Mobile Layout: Full width (w-full), margin-bottom 4px (mb-4),Desktop Layout: Quarter width (w-1/4), margin-right 4px (mr-4) -->
+              <img src="https://placehold.co/150x100" alt="Product Image" class="w-24 md:w-1/4 mr-4 rounded-md">
+              <!-- Product Details: Structure: Flexbox,Mobile Layout: Flex column (flex-col),Desktop Layout: Flex column (flex-col),Spacing: Padding 16px -->
+              <div class="flex flex-col items-start">
+                <h3 class="text-lg font-medium">Product Name 1</h3>
+                <p class="text-gray-600">Description goes here</p>
+                <div class="flex items-center mt-2">
+                  <span class="mr-2 text-lg">Price: $19.99</span>
+                  <div class="btn-group">
+                    <button class="btn btn-xs"> - </button>
+                    <span class="btn btn-xs">1</span>
+                    <button class="btn btn-xs"> + </button>
+                  </div>
+                  <button class="btn btn-error btn-sm ml-4">Remove</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- What components should the cart summary section include? -->
+      <!-- The cart summary section should include:,Subtotal,Shipping Costs (if applicable),Discount (if applicable),Total -->
+      <!-- What layout should the cart summary section have in mobile and desktop views? -->
+      <!-- Mobile Layout: Flex column (flex-col),Desktop Layout: Flex column (flex-col),Spacing: Padding 16px,Margin 16px top and bottom -->
+      <div class="bg-base-100 rounded-md p-4">
+        <h2 class="text-xl font-bold mb-4">Order Summary</h2>
+        <!-- Subtotal: Bold text
+        Shipping: Bold text
+        Discount: Bold text
+        Total: Bold text with a larger font size for emphasis. -->
+        <ul class="list-disc pl-5">
+          <li class="mb-2">Subtotal: <span class="font-medium">$49.98</span></li>
+          <li class="mb-2">Shipping: <span class="font-medium">$5.99</span></li>
+          <li class="mb-2">Discount: <span class="font-medium">$0.00</span></li>
+          <li class="mb-2">Total: <span class="text-lg font-bold text-primary">$55.97</span></li>
+        </ul>
+
+        <!-- What components should the payment & checkout section include?", -->
+        <!-- The payment & checkout section should include:,Apply Coupon Code (input field),Checkout Button (prominent and clear call to action -->
+        <!-- What layout should the payment & checkout section have in mobile and desktop views?", -->
+        <!-- Mobile Layout: Flex column (flex-col),Desktop Layout: Flex row (flex-row), justify-between (justify-between),Spacing: Padding 24px, Margin 16px top and bottom -->
+
+        <div class="mt-4">
+          <!-- input style; Input field with placeholder text,Mobile Layout: Full width (w-full), margin-bottom 4px (mb-4),Desktop Layout: Half width (w-1/2) -->
+          <input type="text" placeholder="Enter coupon code" class="input input-bordered w-full mb-4" />
+          <!-- Button with prominent size,Mobile Layout: Full width (w-full),Desktop Layout: Quarter width (w-1/4) -->
+          <button class="btn btn-primary w-full">Checkout</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- What components should be in the footer? -->
+    <!-- The footer should include:,Copyright Information,Links to Privacy Policy, Terms of Service, etc -->
+    <!-- What layout should the footer have in mobile and desktop views? -->
+    <!-- Mobile Layout: Flex column (flex-col), items centered (items-center),Desktop Layout: Flex row (flex-row), justify-between (justify-between), items centered (items-center),Spacing: Padding 16px -->
+    <footer class="bg-base-200 text-center p-4 mt-8 rounded-md">
+      <!-- Copy right style and arrengement in mobile and desktop:Small text, left-aligned. -->
+      <p class="text-sm text-gray-600">© 2023 Your Company. All Rights Reserved.</p>
+      <!-- Links style anf arrengement in mobile and desktop:Small text, center-aligned, with margin-top 2px (mt-2). -->
+      <div class="mt-2">
+        <a href="#" class="link link-hover text-primary">Privacy Policy</a> |
+        <a href="#" class="link link-hover text-primary">Terms of Service</a>
+      </div>
+    </footer>
+  </div>
+
+</body>
+
+</html>
