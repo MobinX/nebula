@@ -20,7 +20,7 @@ export default function CodeRenderer({ code }: { code: string }) {
     // The rest of your component logic
 
     return (
-        <div className="mockup-browser border-base-300 border w-full h-full rounded-3xl">
+        <div className="mockup-browser border-base-300 border w-full h-[91%] rounded-3xl">
             <div className="mockup-browser-toolbar justify-between">
                 <div className="input border-base-300 text-base-content border">https://demo.com</div>
                 <div className="flex items-center gap-2">

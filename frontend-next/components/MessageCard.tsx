@@ -1,5 +1,5 @@
 import { Orbit, Send } from "lucide-react";
-import { useContext, useState } from "react";
+import { use, useContext, useEffect, useRef, useState } from "react";
 import { FlipContext } from "./CardFlipper";
 
 export interface Msg {
@@ -18,7 +18,7 @@ const MsgHeader = () => {
                 <h3 className="text-lg font-medium text-gray-500">Frontend Team</h3>
             </div>
             <div className="flex items-center gap-2">
-                <div onClick={()=>toggleFlip()} className="">
+                <div onClick={() => toggleFlip()} className="">
                     <Orbit className="w-6 h-6 text-gray-500" />
                 </div>
 
@@ -26,9 +26,32 @@ const MsgHeader = () => {
         </div>)
 }
 
-const MsgContainer = ({ children }: { children: React.ReactNode }) => {
+const MsgContainer = ({ msg }: { msg: Msg[] }) => {
+    const divRef = useRef<HTMLDivElement | null>(null);
+    useEffect(() => {
+        console.log("msg changed")
+        if (divRef.current) {
+            divRef.current.scrollTo({
+                top: divRef.current.scrollHeight,
+                behavior: "smooth",
+            });
+            console.log("scrolling to bottom");
+        }
+    })
 
-    return (<div className="px-4 py-6 space-y-6 overflow-y-auto h-full"> {children} </div>)
+
+    return (
+        <div className="px-4 py-6 space-y-6 overflow-y-scroll h-full" ref={divRef}>
+            {msg.map((m, i) => {
+                if (m.from === "client") {
+                    return <SelfMessage key={i} msg={m.msg} to={m.to} />
+                } else {
+                    return <OtherMessage key={i} msg={m.msg} from={m.from} to={m.to} />
+                }
+            })
+            }
+
+        </div>)
 }
 
 const SelfMessage = ({ msg, state = "", to }: { msg: string, state?: string, to: string }) => {
@@ -64,16 +87,7 @@ export default function MessageCard({ msg, onMsgSend, setIsClientAllowedInput, i
         <div className="flex items-center justify-center h-full w-full">
             <div className="w-full max-w-xs h-full flex flex-col  bg-white shadow-md rounded-3xl">
                 <MsgHeader />
-                <MsgContainer>
-                    {msg.map((m, i) => {
-                        if (m.from === "client") {
-                            return <SelfMessage key={i} msg={m.msg} to={m.to} />
-                        } else {
-                            return <OtherMessage key={i} msg={m.msg} from={m.from} to={m.to} />
-                        }
-                    })
-                    }
-                </MsgContainer>
+                <MsgContainer msg={msg} />
                 <div className="px-4 py-3 border-t border-gray-200 flex items-center w-full gap-2">
                     <input
                         type="text"
