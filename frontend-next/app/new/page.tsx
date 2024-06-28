@@ -24,7 +24,7 @@ export default function Home() {
   };
   const sendMsg = async (msg: string) => {
     log(`client: ${msg}`);
-    teamInstance?.call("client", "representative", msg);
+    teamInstance?.call("client", "developer", msg);
   }
   const log = (msg: string) => {
     console.log(msg);

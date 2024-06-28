@@ -48,13 +48,14 @@ export const Member = async (memeberInfo: MemberType): Promise<MemberOutput> => 
             }
             // log(`[members] [${memeberInfo.role}] Members: ${memberlist}`);
             //load communication prompts
+            let totalPrompt = systemPrompt + `You can only send messages to them:  ${memberlist}`
             
-            memberChatHistory.add("user", systemPrompt  );
+            memberChatHistory.add("user", totalPrompt);
 
         },
         call: async (from: string, msg: any) => {
             try {
-                return await execGemini({ msgx: `Hey ${memeberInfo.role}, ${from} has sent you a msg: ${msg}`, history: memberChatHistory });
+                return await execGemini({ msgx: `[[system]] Hey ${memeberInfo.role}, ${from} has sent you a msg: ${msg}`, history: memberChatHistory });
                 memberChatHistory.add("user", `Hey ${memeberInfo.role}, ${from} has sent you a msg: ${msg}`);
             } catch (e) {
                 console.log("[Member] Error in member call: ", e);
