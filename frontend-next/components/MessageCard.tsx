@@ -1,4 +1,4 @@
-import { Orbit, Send } from "lucide-react";
+import { EyeIcon, Orbit, Send } from "lucide-react";
 import { use, useContext, useEffect, useRef, useState } from "react";
 import { FlipContext } from "./CardFlipper";
 
@@ -9,7 +9,7 @@ export interface Msg {
     timestamp: string;
 }
 
-const MsgHeader = () => {
+const MsgHeader = ({ setCardState }: { setCardState: Function }) => {
     const { toggleFlip } = useContext(FlipContext);
     return (
         <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
@@ -20,6 +20,10 @@ const MsgHeader = () => {
             <div className="flex items-center gap-2">
                 <div onClick={() => toggleFlip()} className="">
                     <Orbit className="w-6 h-6 text-gray-500" />
+
+                </div>
+                <div onClick={() => setCardState(false)} className="text-base-content md:hidden">
+                    <EyeIcon className="w-6 h-6" />
                 </div>
 
             </div>
@@ -81,12 +85,12 @@ const OtherMessage = ({ msg, state = "", from, to }: { msg: string, state?: stri
     )
 }
 
-export default function MessageCard({ msg, onMsgSend, setIsClientAllowedInput, isClientAllowedInput }: { msg: Msg[], onMsgSend: (arg0: string) => void, setIsClientAllowedInput: (arg0: boolean) => void, isClientAllowedInput: boolean }) {
+export default function MessageCard({ msg, onMsgSend, setIsClientAllowedInput, isClientAllowedInput, isShowingMsgCard, setCardState }: { setCardState: Function, isShowingMsgCard: boolean, msg: Msg[], onMsgSend: (arg0: string) => void, setIsClientAllowedInput: (arg0: boolean) => void, isClientAllowedInput: boolean }) {
     const [messages, setMessages] = useState<string>("")
     return (
-        <div className="flex items-center justify-center h-full w-full">
+        <div className={`flex items-center justify-center h-full w-full ${isShowingMsgCard ? "flex " : "hidden  md:flex"}`}>
             <div className="w-full max-w-xs h-full flex flex-col  bg-white shadow-md rounded-3xl">
-                <MsgHeader />
+                <MsgHeader setCardState={setCardState} />
                 <MsgContainer msg={msg} />
                 <div className="px-4 py-3 border-t border-gray-200 flex items-center w-full gap-2">
                     <input

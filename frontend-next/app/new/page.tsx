@@ -18,6 +18,7 @@ export default function Home() {
   const [teamInstance, setTeamInstance] = useState<Team | null>(null);
   const [html, setHtml] = useState<string | null>(null)
   const [isClientAllowedInput, setIsClientAllowedInput] = useState<boolean>(true)
+  const [isShowingMsgCard, setIsShowingMsgCard] = useState<boolean>(true)
   const showMsg = (msgsx:Msg[]) => { console.log(msgsx);
     setMsgs(msgsx);
    
@@ -59,23 +60,23 @@ export default function Home() {
   return (
     <BackgroundContainer>
       <div className="w-full h-full grid grid-cols-12 grid-rows-3  grid-flow-row gap-5 items-center px-6 py-10">
-        <div className="col-span-12 row-span-3 md:col-span-8 hidden md:flex h-full">
+        <div className={`col-span-12 row-span-3 md:col-span-8  md:flex h-full ${isShowingMsgCard == false ? "flex" : " hidden md:flex"}`}>
           <CardFlipper>
             <CardFace>
-              <CodeRenderer code={html || ""} />
+              <CodeRenderer code={html || ""} isShowingMsgCard={isShowingMsgCard} setCardState={(state:boolean)=> setIsShowingMsgCard(state)} />
             </CardFace>
             <CardBack>
-              <CodeViewer code={html || ""} />
+              <CodeViewer code={html || ""} isShowingMsgCard={isShowingMsgCard} setCardState={(state:boolean)=> setIsShowingMsgCard(state)} />
             </CardBack>
           </CardFlipper>
         </div>
-        <div className="col-span-12 row-span-3 md:col-span-4 md:col-start-9 h-full">
+        <div className={`col-span-12 row-span-3 md:col-span-4 md:col-start-9 h-full ${isShowingMsgCard == true ? "block" : " hidden md:block"}`}>
           <CardFlipper>
             <CardFace>
-              <MessageCard msg={msgs} onMsgSend={msg => sendMsg(msg)} setIsClientAllowedInput={state => setIsClientAllowedInput(state)} isClientAllowedInput={isClientAllowedInput} />
+              <MessageCard msg={msgs} onMsgSend={msg => sendMsg(msg)} setIsClientAllowedInput={state => setIsClientAllowedInput(state)} isClientAllowedInput={isClientAllowedInput} isShowingMsgCard={isShowingMsgCard} setCardState={(state:boolean)=> setIsShowingMsgCard(state)} />
             </CardFace>
             <CardBack>
-              <LogViewer logs={logs} />
+              <LogViewer logs={logs} isShowingMsgCard={isShowingMsgCard} setCardState={(state:boolean)=> setIsShowingMsgCard(state)} />
             </CardBack>
           </CardFlipper>
           {/* <MessageCard msg={msgs} onMsgSend={msg => sendMsg(msg)} setIsClientAllowedInput={state=>setIsClientAllowedInput(state)} isClientAllowedInput={isClientAllowedInput}/> */}
