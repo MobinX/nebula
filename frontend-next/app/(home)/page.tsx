@@ -1,8 +1,8 @@
 "use client"
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Member, clientWeb, codeRendererWeb, type MemberType } from "../lib/member";
-import { Team } from "../lib/team";
+import { Member, clientWeb, codeRendererWeb, type MemberType } from "../../lib/member";
+import { Team } from "../../lib/team";
 import { memberInfo } from "@/ai/frontend-team";
 import { loadPrompts } from "@/utils/loadPrompts";
 import { useEffectOnce } from "@/lib/useEffectOnce";
