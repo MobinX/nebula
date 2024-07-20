@@ -76,7 +76,7 @@ const WebsiteList = () => {
     )
 }
 const ActionsRow1 = () => (
-    <div className="flex justify-between items-center w-full">
+    <div className="flex justify-between items-center w-full md:my-2">
         <div className="flex items-center gap-2 bg-base-content/30 rounded-xl w-[60%]  md:w-[40%] my-3 ">
             <input className="input w-full input-sm flex-1 input-ghost focus:outline-none bg-transparent focus:bg-transparent focus:border-transparent placeholder:text-base-content" type="text" placeholder="Search..." />
             <button className="btn btn-circle btn-ghost btn-sm ">
@@ -96,7 +96,7 @@ const ActionsRow2 = () => (
                 {/* <div className="flex items-center gap-1"><Activity className="w-4 h-4 hidden md:block" />{websiteDummyInfo.length} items found</div> */}
                 <div className="flex gap-2 items-center justify-center">
                     <ArrowDownUp className="w-5 h-5" />
-                    <p className="hidden md:block">Sort by :</p>
+                    <p className="hidden ">Sort by :</p>
                     <select className="select select-sm bg-base-content/30 rounded-md text-base-200 focus:outline-none">
                         <option className="">Name (A to Z)</option>
                         <option>Name (Z to A)</option>
