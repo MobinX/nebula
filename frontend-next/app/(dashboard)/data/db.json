@@ -1,0 +1,65 @@
+{
+    "environment_web": {
+        "langs": [
+            {
+                "name": "php",
+                "versions": [
+                    "7.0.1",
+                    "7.0.2"
+                ],
+                "framworks": [
+                    {
+                        "name": "Base",
+                        "version": "11.0.1",
+                        "pkg": "com.mbn.xpanel",
+                        "executeAddSrc": "add.js",
+                        "executeAddUIPath": "addui.js",
+                        "executeUpdateSrc": "add.js",
+                        "executeUpdateUIPath": "addui.js",
+                        "supported_lang_v": "7.0.1"
+                    },
+                    {
+                        "name": "Baseb",
+                        "version": "11.0.1",
+                        "pkg": "com.mbn.xpanel",
+                        "executeAddSrc": "add.js",
+                        "executeAddUIPath": "addui.js",
+                        "executeUpdateSrc": "add.js",
+                        "executeUpdateUIPath": "addui.js",
+                        "supported_lang_v": "7.0.2"
+                    }
+                ]
+            },
+            {
+                "name": "phtp",
+                "versions": [
+                    "7.1.1",
+                    "7.0.0"
+                ],
+                "framworks": [
+                    {
+                        "name": "Base",
+                        "version": "11.0.1",
+                        "pkg": "com.mbn.xpanel",
+                        "executeAddSrc": "add.js",
+                        "executeAddUIPath": "addui.js",
+                        "executeUpdateSrc": "add.js",
+                        "executeUpdateUIPath": "addui.js",
+                        "supported_lang_v": "7.0.0"
+                    },
+                    {
+                        "name": "Bases",
+                        "version": "11.0.1",
+                        "pkg": "com.mbn.xpanel",
+                        "executeAddSrc": "add.js",
+                        "executeAddUIPath": "addui.js",
+                        "executeUpdateSrc": "add.js",
+                        "executeUpdateUIPath": "addui.js",
+                        "supported_lang_v": "7.0.1"
+                    }
+                ]
+            }
+        ],
+        "WebsiteInfoList": []
+    }
+}
