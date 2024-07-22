@@ -1,9 +1,12 @@
+import { randomUUID, UUID } from "node:crypto"
 import { readFileSync, writeFileSync } from "node:fs"
 import path from "node:path"
 
 export interface DB_INTERFACE {
     environment_web: ENVIRONMENT_WEB
     //environment_db
+
+
 
 }
 export interface environment_web_lang_framwork {
@@ -22,6 +25,7 @@ export interface environment_web_lang {
     framworks: environment_web_lang_framwork[]
 }
 export interface WebsiteInfo {
+    id?: UUID
     name: string
     domain: string
     language: string
@@ -61,13 +65,12 @@ export async function saveDB() {
     try {
         let dbPath = path.join((process.argv[1]).replace("db.ts", ""), "db.json")
         console.log("execution dbPath", dbPath)
-        writeFileSync("C:/Users/progr/DEV/nebula/frontend-next/app/(dashboard)/data/db.json", JSON.stringify(DB),{mode:"a"})
+        writeFileSync("C:/Users/progr/DEV/nebula/frontend-next/app/(dashboard)/data/db.json", JSON.stringify(DB),)
     }
     catch (e) {
         throw e
     }
 }
-
 
 export async function addLang(lang: environment_web_lang): Promise<BaseResult> {
     try {
@@ -330,6 +333,111 @@ export async function removeLangFramwork(langName: string, pkg: string): Promise
         }
     }
 }
+export async function addWebsite(website: WebsiteInfo): Promise<BaseResult> {
+    async function doit() {
+        let uniqId = randomUUID()
+        if ((DB.environment_web.WebsiteInfoList.find(site => site.id == uniqId)) == undefined) {
+            DB = {
+                ...DB, environment_web: {
+                    ...DB.environment_web,
+                    WebsiteInfoList: DB.environment_web.WebsiteInfoList.concat([{...website,id:uniqId}])
+                }
+            }
+            await saveDB()
+
+        } else {
+            await doit()
+        }
+    }
+    try {
+        await loadDB()
+        await doit()
+        return {
+            ok: true,
+            msg: "ok"
+        }
+
+    }
+    catch (e: any) {
+        console.log(e)
+        return {
+            ok: false,
+            msg: e
+        }
+    }
+}
+export async function getWebsits(): Promise<WebsiteInfo[]> {
+    await loadDB()
+    return DB.environment_web.WebsiteInfoList
+}
+export async function updateWebsiteInfo(id: UUID, info: WebsiteInfo): Promise<BaseResult> {
+    try {
+        await loadDB()
+        let websitePortion = DB.environment_web.WebsiteInfoList.find(site => site.id == id)
+
+
+        if (websitePortion) {
+
+            let tempWebsites: WebsiteInfo[] = []
+            DB.environment_web.WebsiteInfoList.map(site => {
+                if (site.id != id) tempWebsites.push(site)
+            })
+            tempWebsites.push({ ...websitePortion, ...info })
+            DB = {
+                ...DB, environment_web: {
+                    ...DB.environment_web,
+                    WebsiteInfoList: tempWebsites
+                }
+            }
+            await saveDB()
+            return {
+                ok: true,
+                msg: "ok"
+            }
+        }
+        else {
+            return {
+                ok: false,
+                msg: "website with that id dont exists"
+            }
+        }
+    }
+    catch (e: any) {
+        console.log(e)
+        return {
+            ok: false,
+            msg: e
+        }
+    }
+}
+export async function removeWebsite(id: UUID): Promise<BaseResult> {
+    try {
+        await loadDB()
+        let tempWebsites: WebsiteInfo[] = []
+        DB.environment_web.WebsiteInfoList.map((itm) => {
+            if (itm.id != id) tempWebsites.push(itm)
+        })
+        DB = {
+            ...DB, environment_web: {
+                ...DB.environment_web,
+                WebsiteInfoList: tempWebsites
+            }
+        }
+        await saveDB()
+        return {
+            ok: true,
+            msg: "ok"
+        }
+    }
+    catch (e: any) {
+        console.log(e)
+        return {
+            ok: false,
+            msg: e
+        }
+    }
+}
+
 (async () => {
     let dummyLang: environment_web_lang = {
         name: "php",
