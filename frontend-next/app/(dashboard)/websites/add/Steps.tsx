@@ -7,7 +7,7 @@ import { DrawUI, UIInterface } from "../../components/DrawUI"
 import { UIPasswordInput, UITextInput } from "../../plugin/src/developer/ui"
 import { getUI } from "../../actions/getUI"
 import { useFormState } from "react-dom"
-import { exeAdd } from "../../actions/exeScriptAddWeb"
+import { exeAdd } from "../../actions/website/AddWeb"
 
 export function Steps({ langs }: { langs: environment_web_lang[] }) {
     const [steps, setSteps] = useState(1)
@@ -19,7 +19,8 @@ export function Steps({ langs }: { langs: environment_web_lang[] }) {
         framwork_v: langs[0].framworks[0].version
     })
     const [framworks, setFramworks] = useState<environment_web_lang_framwork[]>(getLangFramworksIncludeLangs(environmentInfo.lang, environmentInfo.lang_v, langs))
-    const [formState, formAction] = useFormState(exeAdd, { path: `C:/Users/progr/DEV/nebula/frontend-next/app/(dashboard)/plugin/store/${(framworks.find(itm => itm.name == environmentInfo.framwork))?.pkg}/${(framworks.find(itm => itm.name == environmentInfo.framwork))?.executeAddSrc}` })
+    const [formState, formAction] = useFormState(exeAdd, { path: `C:/Users/progr/DEV/nebula/frontend-next/app/(dashboard)/plugin/store/${(framworks.find(itm => itm.name == environmentInfo.framwork))?.pkg}/${(framworks.find(itm => itm.name == environmentInfo.framwork))?.executeAddSrc}`, updateUIPath:`C:/Users/progr/DEV/nebula/frontend-next/app/(dashboard)/plugin/store/${(framworks.find(itm => itm.name == environmentInfo.framwork))?.pkg}/${(framworks.find(itm => itm.name == environmentInfo.framwork))?.executeUpdateUIPath}`,
+    updateUISrc:`C:/Users/progr/DEV/nebula/frontend-next/app/(dashboard)/plugin/store/${(framworks.find(itm => itm.name == environmentInfo.framwork))?.pkg}/${(framworks.find(itm => itm.name == environmentInfo.framwork))?.executeUpdateSrc}`,deleteSrc:`C:/Users/progr/DEV/nebula/frontend-next/app/(dashboard)/plugin/store/${(framworks.find(itm => itm.name == environmentInfo.framwork))?.pkg}/${(framworks.find(itm => itm.name == environmentInfo.framwork))?.executeDeleteSrc}` })
     useEffect(() => {
         if(formState.msg == "ok") setSteps(3)
     }, [formState])

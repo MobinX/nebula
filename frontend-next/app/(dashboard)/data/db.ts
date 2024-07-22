@@ -18,6 +18,7 @@ export interface environment_web_lang_framwork {
     executeAddSrc: string
     executeUpdateUIPath: string
     executeUpdateSrc: string
+    executeDeleteSrc:string
 }
 export interface environment_web_lang {
     name: string
@@ -29,9 +30,14 @@ export interface WebsiteInfo {
     name: string
     domain: string
     language: string
+    framwork?:string
     database: string
     host: string
+    updateUIPath:string
+    updateUISrc:string
+    deleteSrc:string
     filepath: string
+    store? : any
 }
 export interface ENVIRONMENT_WEB {
     langs: environment_web_lang[]
@@ -370,6 +376,12 @@ export async function getWebsits(): Promise<WebsiteInfo[]> {
     await loadDB()
     return DB.environment_web.WebsiteInfoList
 }
+export async function getWebsiteById(id: UUID): Promise<WebsiteInfo | undefined> {
+    
+    await loadDB()
+    return DB.environment_web.WebsiteInfoList.find(web => web.id == id)
+}
+
 export async function updateWebsiteInfo(id: UUID, info: WebsiteInfo): Promise<BaseResult> {
     try {
         await loadDB()
@@ -437,6 +449,33 @@ export async function removeWebsite(id: UUID): Promise<BaseResult> {
         }
     }
 }
+export async function removeManyWebsite(ids: any[]): Promise<BaseResult> {
+    try {
+        await loadDB()
+        let tempWebsites: WebsiteInfo[] = []
+        DB.environment_web.WebsiteInfoList.map((itm) => {
+            if (ids.indexOf(itm.id) < 0) tempWebsites.push(itm)
+        })
+        DB = {
+            ...DB, environment_web: {
+                ...DB.environment_web,
+                WebsiteInfoList: tempWebsites
+            }
+        }
+        await saveDB()
+        return {
+            ok: true,
+            msg: "ok"
+        }
+    }
+    catch (e: any) {
+        console.log(e)
+        return {
+            ok: false,
+            msg: e
+        }
+    }
+}
 
 (async () => {
     let dummyLang: environment_web_lang = {
@@ -451,7 +490,8 @@ export async function removeWebsite(id: UUID): Promise<BaseResult> {
                 executeAddUIPath: "addui.js",
                 executeUpdateSrc: "add.js",
                 executeUpdateUIPath: "addui.js",
-                supported_lang_v: "7.0.1"
+                supported_lang_v: "7.0.1",
+                executeDeleteSrc:"add.js"
             }
         ]
     }
