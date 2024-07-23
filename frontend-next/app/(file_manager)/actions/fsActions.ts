@@ -1,17 +1,19 @@
 "use server"
 import { Dirent, readdirSync, stat, statSync } from "node:fs"
-
+import  {jsn} from "./icons"
 export interface directoryItemType {
     name: string
     path: string
     parentPath: string
     isFolder: boolean
     size:string
+    iconName:string
 
 
 
 }
  
+type jsn = any;
 
 function modifyFileSize(size:number,presentType="byte"):string{
     if(((size.toString().split("."))[0]).length >= 4) { //if the first part of . in number or real part has 4 digit, it needs conversion
@@ -58,7 +60,25 @@ function modifyFileSize(size:number,presentType="byte"):string{
     }
 }
 
+function getIconName(name:string,isDirectory:boolean):string{
+
+    if(isDirectory){
+        //check for folder name first
+        if(Object.keys(jsn.folderNames).indexOf(name) > -1) return jsn.iconDefinitions[jsn.folderNames[name]].iconPath;
+        else return (jsn.iconDefinitions[jsn.folder]).iconPath
+    }
+    else {
+        if(Object.keys(jsn.fileNames).indexOf(name) > -1) return jsn.iconDefinitions[jsn.fileNames[name]].iconPath;
+        else {
+            let fileExt = (name.split(".")).pop()
+            if(fileExt && Object.keys(jsn.fileExtensions).indexOf(fileExt) > -1) return jsn.iconDefinitions[jsn.fileExtensions[fileExt]].iconPath;
+            else return jsn.iconDefinitions[jsn.file].iconPath
+        }
+    }
+}
+
 export async function getDir(path: string):Promise<directoryItemType[] | string> {
+    console.log((jsn.iconDefinitions[jsn.folder]).iconPath)
     try {
         let dItems:directoryItemType[] = []
         const directoryItems = readdirSync(path, { withFileTypes: true })
@@ -69,7 +89,8 @@ export async function getDir(path: string):Promise<directoryItemType[] | string>
                 isFolder:dt.isDirectory(),
                 path:dt.parentPath,
                 parentPath:dt.parentPath,
-                size:dt.isDirectory() ? "" :modifyFileSize(state.size)
+                size:dt.isDirectory() ? "" :modifyFileSize(state.size),
+                iconName: `${getIconName(dt.name,dt.isDirectory())}`
 
 
             })

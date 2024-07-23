@@ -6,6 +6,7 @@ import { SideBar } from "../(dashboard)/components/Sidebar";
 import "../globals.css"
 
 import { Search, Trash, PackagePlus, ArrowDownUp, ChevronLeft, ChevronRight } from "lucide-react";
+import { FSManager } from "./components/FSManager";
 
 export default function RootLayout({
     children,
@@ -16,14 +17,16 @@ export default function RootLayout({
         <html lang="en" className="w-full h-full ">
             <body className="w-full h-full">
                 <BgWrapper>
-                    <div className="w-full h-full flex ">
-                        
-                        <div className="flex flex-col md:px-8  py-4 px-4 gap-2 flex-1 w-full">
-                            <Breadcums />
-                     
-                            {children}
+                    <FSManager>
+                        <div className="w-full h-full flex ">
+
+                            <div className="flex flex-col md:px-8  py-4 px-4 gap-2 flex-1 w-full">
+                                <Breadcums />
+
+                                {children}
+                            </div>
                         </div>
-                    </div>
+                    </FSManager>
                 </BgWrapper>
             </body>
         </html>
