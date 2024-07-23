@@ -191,7 +191,7 @@ export default function DBs() {
                             )
                         } else {
                             return (
-                                <Link href={`/database/edit?id=${info.id}`} className="btn btn-ghost btn-lg flex-nowrap flex justify-center md:space-x-4 items-center w-full px-3 md:px-7 py-[2.125rem] md:py-10 bg-base-content/5 hover:bg-base-content/20 cursor-pointer transition duration-200 rounded-lg text-[15px] md:text-base" key={key}>
+                                <Link href={`/database/edit?name=${info.name}`} className="btn btn-ghost btn-lg flex-nowrap flex justify-center md:space-x-4 items-center w-full px-3 md:px-7 py-[2.125rem] md:py-10 bg-base-content/5 hover:bg-base-content/20 cursor-pointer transition duration-200 rounded-lg text-[15px] md:text-base" key={key}>
                                     <ListItem isSelectionMode={selectMode} info={info} />
                                 </Link>
                             )

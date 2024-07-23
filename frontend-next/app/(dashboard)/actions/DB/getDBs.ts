@@ -1,7 +1,7 @@
 "use server"
 
 import { UUID } from "crypto";
-import { getDBById, getDBs, DBInfo } from "../../db/DBManager";
+import { getDBById, getDBs, DBInfo, getDBByName } from "../../db/DBManager";
 
 export async function getDBList():Promise<DBInfo[] | null | undefined> {
     try {
@@ -13,9 +13,9 @@ export async function getDBList():Promise<DBInfo[] | null | undefined> {
     }
 }
 
-export async function getOneDB(id:UUID):Promise<DBInfo | null | undefined> {
+export async function getOneDB(name:string):Promise<DBInfo | null | undefined> {
     try {
-        const DB = await getDBById(id)
+        const DB = await getDBByName(name)
         return DB
     } catch (error) {
         console.log(error)

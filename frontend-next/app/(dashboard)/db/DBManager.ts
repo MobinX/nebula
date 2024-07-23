@@ -132,6 +132,12 @@ export async function addDB(db: DBInfo): Promise<BaseResult> {
     }
     try {
         let DB = await loadDB()
+        // if((DB.environment_db.DBList.find(_db => _db.name == db.name)) == undefined){
+        //     return {
+        //         ok:false,
+        //         msg:"DB NAME ALREADY EXISTS"
+        //     }
+        // }
         await doit()
         return {
             ok: true,
@@ -151,10 +157,21 @@ export async function getDBs(): Promise<DBInfo[]> {
     let DB = await loadDB()
     return DB.environment_db.DBList
 }
+export async function getDBsNameArray(): Promise<string[]> {
+    let DB = await loadDB()
+    let names: string[] = []
+    DB.environment_db.DBList.map(db => names.push(db.name))
+    return names
+}
 export async function getDBById(id: UUID): Promise<DBInfo | undefined> {
 
     let DB = await loadDB()
-    return DB.environment_db.DBList.find(web => web.id == id)
+    return DB.environment_db.DBList.find(_db => _db.id == id)
+}
+export async function getDBByName(name: string): Promise<DBInfo | undefined> {
+
+    let DB = await loadDB()
+    return DB.environment_db.DBList.find(_db => _db.name == name)
 }
 
 export async function updateDBInfo(id: UUID, info: DBInfo): Promise<BaseResult> {

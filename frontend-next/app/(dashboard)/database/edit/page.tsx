@@ -12,26 +12,38 @@ import Link from "next/link"
 import { exeUpdateDB } from "../../actions/DB/updateDBInfo"
 
 export default function DBInfoPage() {
+    const [loadDataState, setLaodDataState] = useState<"SUCCESS" | "LOADING" | "FAILED">("LOADING")
+
     const param = useSearchParams()
-    const id: any = param.get("id")
+    const _name: any = param.get("name")
+    useEffectOnce(()=>{if(!_name) {setLaodDataState("FAILED")}})
+
+
     const [DB, setDB] = useState<DBInfo>()
     const [formState, formAction] = useFormState(exeUpdateDB, {msg:"hi"})
     const [steps, setSteps] = useState(1)
     const [UIs, setUIs] = useState<UIInterface[]>([])
     const loadDB = async () => {
-        const DBinfo = await getOneDB(id)
+        const DBinfo = await getOneDB(_name)
         if (DBinfo) {
             setDB(DBinfo)
             console.log(DBinfo)
             await fetchUI(DBinfo.updateUIPath)
+            setLaodDataState("SUCCESS")
         }
+        else {setLaodDataState("FAILED")}
+
     }
     const fetchUI = async (uiPath: string) => {
         const uis = await getUI(uiPath)
         if (uis) {
             setUIs(uis)
             console.log("got ui") 
+            setLaodDataState("SUCCESS")
+
         }
+        else {setLaodDataState("FAILED")}
+
     }
     useEffect(() => {
         if (formState.msg == "ok") setSteps(2)
@@ -40,7 +52,7 @@ export default function DBInfoPage() {
         loadDB()
     })
     return <div className="flex w-full h-full justify-center pt-4 overflow-hidden">
-        {steps == 1 &&
+        {steps == 1 && loadDataState == "SUCCESS" &&
             <div className="w-full bg-base-content/15 rounded-3xl flex flex-col px-5 md:px-12 lg:px-16 lg:w-[90%] py-6 transition-all duration-500">
                 <div className="w-full text-2xl text-center mb-3"> Configure Framwork </div>
                 <form action={formAction} className="flex flex-col h-full py-4 overflow-auto px-3">
@@ -54,11 +66,18 @@ export default function DBInfoPage() {
                 </form>
             </div>
         }
-        {steps == 2 &&
+        {steps == 2 && loadDataState == "SUCCESS" &&
+        
             <div className=" h-[80%] w-full flex flex-col justify-center items-center bg-base-content/15 rounded-3xl px-5 md:px-9 py-6 transition-all duration-500 text-3xl lg:text-5xl space-y-5">
                 <p>Configuration Updated!</p>
                 <Link href={"/database"} > <button className="btn btn-sm btn-ghost bg-base-content/30 rounded-full mt-5"> DBs Page</button> </Link>
             </div>
         }
+         {loadDataState == "LOADING" && <p>Loading .....</p>}
+        {loadDataState == "FAILED" &&
+            <div className=" h-[80%] w-full flex flex-col justify-center items-center bg-base-content/15 rounded-3xl px-5 md:px-9 py-6 transition-all duration-500 text-3xl lg:text-5xl space-y-5">
+                <p>Something went wrong</p>
+                <Link href={"/database"} > <button className="btn btn-sm btn-ghost bg-base-content/30 rounded-full mt-5"> Database Page</button> </Link>
+            </div>}
     </div>
 }

@@ -106,7 +106,7 @@ const ListItem = ({ info, isSelectionMode, onSelectionChanged = () => { }, isChe
             </div>
 
             <Link className="flex items-center gap-1 md:gap-2 hover:text-base-100" href={`/files/${info.filepath}`}><button className="btn btn-circle btn-ghost "> <FolderCog className="w-4 h-4" /> </button></Link>
-            <Link className="flex items-center gap-1 md:gap-2 hover:text-base-100" href={`/databases/${info.database}`}> <button className="btn btn-circle btn-ghost "><DatabaseZap className="w-4 h-4" /> </button> </Link>
+            <Link className="flex items-center gap-1 md:gap-2 hover:text-base-100" href={`/database/edit?name=${info.database}`}> <button className="btn btn-circle btn-ghost "><DatabaseZap className="w-4 h-4" /> </button> </Link>
         </>
     )
 }
