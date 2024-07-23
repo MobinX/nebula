@@ -8,7 +8,7 @@ export interface directoryItemType {
     isFolder:string
 
 }
-sta
+
 export async function getDir(path:string) {
     try {
         const directoryItems =  readdirSync(path,{withFileTypes:true})
