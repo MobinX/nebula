@@ -1,6 +1,6 @@
 "use server"
 
-import { addWebsite } from "../../data/db"
+import { addWebsite } from "../../db/webManager"
 import { loadScript } from "../loadScript"
 
 export async function exeAdd(initialState:any,form:FormData){

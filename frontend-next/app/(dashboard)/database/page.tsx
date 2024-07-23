@@ -1,28 +1,27 @@
 "use client"
 import { useEffectOnce } from "@/lib/useEffectOnce"
-import { ArrowDownUp, CheckCheck, ChevronLeft, ChevronRight, DatabaseZap, ExternalLink, FolderCog, Globe, MousePointerSquareDashed, PackagePlus, Search, Trash } from "lucide-react"
+import { ArrowDownUp, CheckCheck, ChevronLeft, ChevronRight, Database, DatabaseZap, ExternalLink, FolderCog, Globe, MousePointerSquareDashed, PackagePlus, Search, Trash } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { getWebsiteList } from "../actions/website/getWebsites"
+import { getDBList } from "../actions/DB/getDBs"
 import { UUID } from "crypto"
-import { exeDeleteWeb } from "../actions/website/deleteWeb"
+import { exeDeleteDB } from "../actions/DB/deleteDB"
 
-export interface WebsiteInfo {
+export interface DBInfo {
     id?: UUID
     name: string
-    domain: string
-    language: string
-    framwork?: string
-    database: string
+    type: string
     host: string
+    domain:string
+    username: string
+    password: string
+    providerUrl: string
     updateUIPath: string
     updateUISrc: string
     deleteSrc: string
-    filepath: string
-    store?: string
+    store?: any
 }
-
-// export const websiteDummyInfo: WebsiteInfo[] = [
+// export const DBDummyInfo: DBInfo[] = [
 //     {
 //         name: "Virsys",
 //         domain: "http://www.virsys.com",
@@ -69,7 +68,7 @@ const removeFromArray = (arry: any[], itm: any): any[] => {
     })
     return tempArray
 }
-// const WebsiteList = ({ websiteInfo }: { websiteInfo: WebsiteInfo[] }) => {
+// const DBList = ({ DBInfo }: { DBInfo: DBInfo[] }) => {
 
 //     return (
 
@@ -87,40 +86,39 @@ const Loading = () => {
     return <div className="text-3xl">Loading.....</div>
 }
 
-const ListItem = ({ info, isSelectionMode, onSelectionChanged = () => { }, isChecked = false }: { info: WebsiteInfo, onSelectionChanged?: Function, isSelectionMode: boolean, isChecked?: boolean }) => {
+const ListItem = ({ info, isSelectionMode, onSelectionChanged = () => { }, isChecked = false }: { info: DBInfo, onSelectionChanged?: Function, isSelectionMode: boolean, isChecked?: boolean }) => {
 
     return (
         <>
             {isSelectionMode && <input type="checkbox" className="checkbox bg-base-content/30" onChange={() => onSelectionChanged()} checked={isChecked} />}
-            <Globe className="w-9 h-9 hidden md:block" />
+            <Database className="w-9 h-9 hidden md:block" />
             <div className="flex flex-col items-start justify-start gap-1  w-full mb-2 ">
                 <h1 className="">{info.name}</h1>
                 <div className="flex items-center  gap-1">
-                    <a href={info.domain} className="flex items-center hover:text-base-100">{info.domain} <ExternalLink className="ml-1 w-3 h-3" /></a>
+                    <a href={info.host} className="flex items-center hover:text-base-100">{info.domain} <ExternalLink className="ml-1 w-3 h-3" /></a>
                     <p className="hidden md:block">|</p>
-                    <p className="hidden md:block">{info.host}</p>
+                    <p className="hidden md:block">{info.username}</p>
                     <p className="hidden md:block">|</p>
-                    <p className="hidden md:block">{info.language}</p>
+                    <p className="hidden md:block">{info.password}</p>
 
                 </div>
             </div>
 
-            <Link className="flex items-center gap-1 md:gap-2 hover:text-base-100" href={`/files/${info.filepath}`}><button className="btn btn-circle btn-ghost "> <FolderCog className="w-4 h-4" /> </button></Link>
-            <Link className="flex items-center gap-1 md:gap-2 hover:text-base-100" href={`/databases/${info.database}`}> <button className="btn btn-circle btn-ghost "><DatabaseZap className="w-4 h-4" /> </button> </Link>
+            <Link className="flex items-center gap-1 md:gap-2 hover:text-base-100" href={`${info.providerUrl}`}> <button className="btn btn-circle btn-ghost "><DatabaseZap className="w-4 h-4" /> </button> </Link>
         </>
     )
 }
 
-export default function Websites() {
+export default function DBs() {
     const [selectedIds, setSelectedIds] = useState<any[]>([])
     const [loadDataState, setLaodDataState] = useState<"SUCCESS"|"LOADING" | "FAILED">("LOADING")
     const loadList = async () => {
-        const tempList = await getWebsiteList()
-        if (tempList && tempList?.length == 0) { setWebsiteList(null); return }
-        if (tempList) { setWebsiteList(tempList); setLaodDataState("SUCCESS");setSelectedIds([])}
+        const tempList = await getDBList()
+        if (tempList && tempList?.length == 0) { setDBList(null); return }
+        if (tempList) { setDBList(tempList); setLaodDataState("SUCCESS"); setSelectedIds([])}
         else { setLaodDataState("FAILED") }
     }
-    const [websiteLst, setWebsiteList] = useState<WebsiteInfo[] | null>([])
+    const [DBLst, setDBList] = useState<DBInfo[] | null>([])
     const [selectMode, setSelectMode] = useState(false)
     useEffectOnce(() => {
 
@@ -142,8 +140,8 @@ export default function Websites() {
                             {selectMode && <div className="badge absolute badge-sm rounded-full -top-[10px] -right-[8px] text-[0.7rem] h-0 p-2 bg-base-content/60 border-0">{selectedIds.length}</div>}
                             <button className="btn btn-circle btn-ghost btn-sm md:h-8 md:w-8   bg-base-content/30" onClick={() => { setSelectMode(!selectMode) }}> <MousePointerSquareDashed className="w-4 h-4" /> </button>
                         </div>
-                        <div> <button className="btn btn-circle btn-sm btn-ghost bg-base-content/30 hover:bg-base-content/50" onClick={async () => { if (selectedIds.length > 0) await exeDeleteWeb(selectedIds); await loadList(); }}><Trash className="w-4 h-4" /></button></div>
-                        <Link href="/websites/add" ><button className="btn btn-circle btn-sm btn-ghost bg-base-content/30 hover:bg-base-content/50"><PackagePlus className="w-4 h-4" /></button> </Link>
+                        <div> <button className="btn btn-circle btn-sm btn-ghost bg-base-content/30 hover:bg-base-content/50" onClick={async () => { if (selectedIds.length > 0) await exeDeleteDB(selectedIds); await loadList(); }}><Trash className="w-4 h-4" /></button></div>
+                        <Link href="/database/add" ><button className="btn btn-circle btn-sm btn-ghost bg-base-content/30 hover:bg-base-content/50"><PackagePlus className="w-4 h-4" /></button> </Link>
 
                     </div>
                 </div>
@@ -152,7 +150,7 @@ export default function Websites() {
             {/* <ActionsRow2 /> */}
 
             {<div className="flex justify-between items-center mb-3 w-full px-3">
-                {/* <div className="flex items-center gap-1"><Activity className="w-4 h-4 hidden md:block" />{websiteDummyInfo.length} items found</div> */}
+                {/* <div className="flex items-center gap-1"><Activity className="w-4 h-4 hidden md:block" />{DBDummyInfo.length} items found</div> */}
                 <div className="flex gap-2 items-center justify-center">
                     <ArrowDownUp className="w-5 h-5" />
                     <p className="hidden ">Sort by :</p>
@@ -165,7 +163,7 @@ export default function Websites() {
                 </div>
                 <div className="flex items-center gap-1">
 
-                    <p className="hidden md:block">Pages : </p><p>{websiteLst?.length}/{20}</p>
+                    <p className="hidden md:block">Pages : </p><p>{DBLst?.length}/{20}</p>
                     <div className="flex items-center ">
                         <button className="btn btn-circle btn-sm btn-ghost w-6 md:w-8"><ChevronLeft className="w-4 h-4" /></button>
                         <button className="btn btn-circle btn-sm btn-ghost w-6 md:w-8"><ChevronRight className="w-4 h-4" /></button>
@@ -175,9 +173,9 @@ export default function Websites() {
 
             </div>}
 
-            {websiteLst && websiteLst?.length > 0 &&
+            {DBLst && DBLst?.length > 0 &&
                 <div className="flex flex-col items-center w-full h-full gap-4 md:gap-5  overflow-y-auto">
-                    {websiteLst?.map((info, key) => {
+                    {DBLst?.map((info, key) => {
                         if (selectMode) {
                             return (
                                 <button className="btn btn-ghost btn-lg flex-nowrap flex justify-center md:space-x-4 items-center w-full px-3 md:px-7 py-[2.125rem] md:py-10 bg-base-content/5 hover:bg-base-content/20 cursor-pointer transition duration-200 rounded-lg text-[15px] md:text-base" key={key} onClick={() => {
@@ -193,7 +191,7 @@ export default function Websites() {
                             )
                         } else {
                             return (
-                                <Link href={`/websites/edit?id=${info.id}`} className="btn btn-ghost btn-lg flex-nowrap flex justify-center md:space-x-4 items-center w-full px-3 md:px-7 py-[2.125rem] md:py-10 bg-base-content/5 hover:bg-base-content/20 cursor-pointer transition duration-200 rounded-lg text-[15px] md:text-base" key={key}>
+                                <Link href={`/database/edit?id=${info.id}`} className="btn btn-ghost btn-lg flex-nowrap flex justify-center md:space-x-4 items-center w-full px-3 md:px-7 py-[2.125rem] md:py-10 bg-base-content/5 hover:bg-base-content/20 cursor-pointer transition duration-200 rounded-lg text-[15px] md:text-base" key={key}>
                                     <ListItem isSelectionMode={selectMode} info={info} />
                                 </Link>
                             )
@@ -206,7 +204,7 @@ export default function Websites() {
             {loadDataState == "LOADING" && <Loading />}
             {loadDataState == "FAILED" && <p>Failed to Load , Something Went Wrong</p>}
 
-            {websiteLst == null && <p>No Websites</p>}
+            {DBLst == null && <p>No DBs</p>}
             {/* <div className="flex justify-end items-center w-full px-3 gap-3 my-2">
                     Pages: {3}/{20}  <div className="flex gap-2 items-center ">
                         <button className="btn btn-circle btn-sm btn-ghost"><ChevronLeft className="w-4 h-4" /></button>

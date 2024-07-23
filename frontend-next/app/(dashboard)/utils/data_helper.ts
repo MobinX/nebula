@@ -1,4 +1,4 @@
-import { environment_web_lang_framwork, environment_web_lang } from "../data/db"
+import { environment_web_lang_framwork, environment_web_lang } from "../db/webManager"
 
 export  function getLangFramworksIncludeLangs(langName: string, supported_version: string, langs:environment_web_lang[]): environment_web_lang_framwork[]  {
     let langPortion = langs.find(lang => lang.name == langName)

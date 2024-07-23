@@ -1,7 +1,7 @@
 "use server"
 
 import { UUID } from "crypto"
-import { addWebsite, removeManyWebsite, removeWebsite } from "../../data/db"
+import { addWebsite, removeManyWebsite, removeWebsite } from "../../db/webManager"
 import { loadScript } from "../loadScript"
 
 export async function exeDeleteWeb(/* path */ids:UUID[]){

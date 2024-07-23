@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { environment_web_lang, environment_web_lang_framwork } from "../../data/db"
+import { environment_web_lang, environment_web_lang_framwork } from "../../db/webManager"
 import { getLangFramworksIncludeLangs } from "../../utils/data_helper"
 import { DrawUI, UIInterface } from "../../components/DrawUI"
 import { UIPasswordInput, UITextInput } from "../../plugin/src/developer/ui"

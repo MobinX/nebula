@@ -10,7 +10,7 @@ export const NavigationIcons: { name: string, icon: ForwardRefExoticComponent<an
         icon: Home
     },{
         name: "Databases",
-        slug: "/databases",
+        slug: "/database",
         icon: DatabaseZap
     },{
         name: "Websites",

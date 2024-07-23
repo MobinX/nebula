@@ -1,14 +1,5 @@
 import { randomUUID, UUID } from "node:crypto"
-import { readFileSync, writeFileSync } from "node:fs"
-import path from "node:path"
-
-export interface DB_INTERFACE {
-    environment_web: ENVIRONMENT_WEB
-    //environment_db
-
-
-
-}
+import {  loadDB, saveDB } from "./baseManager"
 export interface environment_web_lang_framwork {
     name: string
     pkg: string
@@ -43,44 +34,28 @@ export interface ENVIRONMENT_WEB {
     langs: environment_web_lang[]
     WebsiteInfoList: WebsiteInfo[]
 }
+
 // ================================= DB ========================
-export let DB: DB_INTERFACE = {
-    environment_web: {
-        langs: [],
-        WebsiteInfoList: []
-    }
-    //environment_db
-}
+// export let DB: DB_INTERFACE = {
+//     environment_web: {
+//         langs: [],
+//         WebsiteInfoList: []
+//     },
+//     environment_db:{
+//         providers:[],
+//         DBList:[]
+//     }
+//     //environment_db
+// }
 //============================ DB (END) =========================
 export interface BaseResult {
     ok: boolean
     msg: string
 }
-export async function loadDB() {
-    try {
-        let dbPath = path.join((process.argv[1]).replace("db.ts", ""), "db.json")
-        let dbFile = readFileSync("C:/Users/progr/DEV/nebula/frontend-next/app/(dashboard)/data/db.json", { encoding: "utf-8" })
-        DB = JSON.parse(dbFile)
-
-    }
-    catch (e) {
-        throw e
-    }
-}
-export async function saveDB() {
-    try {
-        let dbPath = path.join((process.argv[1]).replace("db.ts", ""), "db.json")
-        console.log("execution dbPath", dbPath)
-        writeFileSync("C:/Users/progr/DEV/nebula/frontend-next/app/(dashboard)/data/db.json", JSON.stringify(DB),)
-    }
-    catch (e) {
-        throw e
-    }
-}
 
 export async function addLang(lang: environment_web_lang): Promise<BaseResult> {
     try {
-        await loadDB()
+        let DB = await loadDB()
         if ((DB.environment_web.langs.find(lan => lan.name == lang.name)) == undefined) {
             DB = {
                 ...DB, environment_web: {
@@ -88,7 +63,7 @@ export async function addLang(lang: environment_web_lang): Promise<BaseResult> {
                     langs: DB.environment_web.langs.concat([lang])
                 }
             }
-            await saveDB()
+            await saveDB(DB)
             return {
                 ok: true,
                 msg: "ok"
@@ -111,22 +86,22 @@ export async function addLang(lang: environment_web_lang): Promise<BaseResult> {
 
 }
 export async function getLangs(): Promise<environment_web_lang[]> {
-    await loadDB()
+    let DB = await loadDB()
     return DB.environment_web.langs
 }
 export async function getLangsNameArray(): Promise<string[]> {
-    await loadDB()
+    let DB = await loadDB()
     let names: string[] = []
     DB.environment_web.langs.map(lang => names.push(lang.name))
     return names
 }
 export async function getLangByName(name: string): Promise<environment_web_lang | undefined> {
-    await loadDB()
+    let DB = await loadDB()
     return DB.environment_web.langs.find(lang => lang.name == name)
 }
 export async function removeLang(lang: string): Promise<BaseResult> {
     try {
-        await loadDB()
+        let DB = await loadDB()
         let tempLangs: environment_web_lang[] = []
         DB.environment_web.langs.map((itm) => {
             if (itm.name != lang) tempLangs.push(itm)
@@ -137,7 +112,7 @@ export async function removeLang(lang: string): Promise<BaseResult> {
                 langs: tempLangs
             }
         }
-        await saveDB()
+        await saveDB(DB)
         return {
             ok: true,
             msg: "ok"
@@ -153,7 +128,7 @@ export async function removeLang(lang: string): Promise<BaseResult> {
 }
 export async function addLangVersion(langName: string, version: string): Promise<BaseResult> {
     try {
-        await loadDB()
+        let DB = await loadDB()
         let langPortion = DB.environment_web.langs.find(lang => lang.name == langName)
 
 
@@ -170,7 +145,7 @@ export async function addLangVersion(langName: string, version: string): Promise
                         langs: tempLangs
                     }
                 }
-                await saveDB()
+                await saveDB(DB)
                 return {
                     ok: true,
                     msg: "ok"
@@ -201,7 +176,7 @@ export async function addLangVersion(langName: string, version: string): Promise
 }
 export async function removeLangVersion(langName: string, version: string): Promise<BaseResult> {
     try {
-        await loadDB()
+        let DB = await loadDB()
         let langPortion = DB.environment_web.langs.find(lang => lang.name == langName)
         if (langPortion) {
             let tempVersion: string[] = []
@@ -219,7 +194,7 @@ export async function removeLangVersion(langName: string, version: string): Prom
                     langs: tempLangs
                 }
             }
-            await saveDB()
+            await saveDB(DB)
             return {
                 ok: true,
                 msg: "ok"
@@ -243,7 +218,7 @@ export async function removeLangVersion(langName: string, version: string): Prom
 }
 export async function addLangFramwork(langName: string, framwork: environment_web_lang_framwork): Promise<BaseResult> {
     try {
-        await loadDB()
+        let DB = await loadDB()
         let langPortion = DB.environment_web.langs.find(lang => lang.name == langName)
         if (langPortion) {
             if ((langPortion?.framworks.find(vv => vv.pkg == framwork.pkg)) == undefined) {
@@ -258,7 +233,7 @@ export async function addLangFramwork(langName: string, framwork: environment_we
                         langs: tempLangs
                     }
                 }
-                await saveDB()
+                await saveDB(DB)
                 return {
                     ok: true,
                     msg: "ok"
@@ -287,7 +262,7 @@ export async function addLangFramwork(langName: string, framwork: environment_we
     }
 }
 export async function getLangFramworks(langName: string, supported_version: string): Promise<environment_web_lang_framwork[] | undefined> {
-    await loadDB()
+    let DB = await loadDB()
     let langPortion = DB.environment_web.langs.find(lang => lang.name == langName)
     if (langPortion) {
         let framworks: environment_web_lang_framwork[] = []
@@ -299,7 +274,7 @@ export async function getLangFramworks(langName: string, supported_version: stri
 }
 export async function removeLangFramwork(langName: string, pkg: string): Promise<BaseResult> {
     try {
-        await loadDB()
+        let DB = await loadDB()
         let langPortion = DB.environment_web.langs.find(lang => lang.name == langName)
         if (langPortion) {
             let tempFramworks: environment_web_lang_framwork[] = []
@@ -317,7 +292,7 @@ export async function removeLangFramwork(langName: string, pkg: string): Promise
                     langs: tempLangs
                 }
             }
-            await saveDB()
+            await saveDB(DB)
             return {
                 ok: true,
                 msg: "ok"
@@ -340,7 +315,10 @@ export async function removeLangFramwork(langName: string, pkg: string): Promise
     }
 }
 export async function addWebsite(website: WebsiteInfo): Promise<BaseResult> {
+
+    let DB = await loadDB();
     async function doit() {
+
         let uniqId = randomUUID()
         if ((DB.environment_web.WebsiteInfoList.find(site => site.id == uniqId)) == undefined) {
             DB = {
@@ -349,14 +327,14 @@ export async function addWebsite(website: WebsiteInfo): Promise<BaseResult> {
                     WebsiteInfoList: DB.environment_web.WebsiteInfoList.concat([{...website,id:uniqId}])
                 }
             }
-            await saveDB()
+            await saveDB(DB)
 
         } else {
             await doit()
         }
     }
     try {
-        await loadDB()
+        let DB = await loadDB()
         await doit()
         return {
             ok: true,
@@ -373,18 +351,18 @@ export async function addWebsite(website: WebsiteInfo): Promise<BaseResult> {
     }
 }
 export async function getWebsits(): Promise<WebsiteInfo[]> {
-    await loadDB()
+    let DB = await loadDB()
     return DB.environment_web.WebsiteInfoList
 }
 export async function getWebsiteById(id: UUID): Promise<WebsiteInfo | undefined> {
     
-    await loadDB()
+    let DB = await loadDB()
     return DB.environment_web.WebsiteInfoList.find(web => web.id == id)
 }
 
 export async function updateWebsiteInfo(id: UUID, info: WebsiteInfo): Promise<BaseResult> {
     try {
-        await loadDB()
+        let DB = await loadDB()
         let websitePortion = DB.environment_web.WebsiteInfoList.find(site => site.id == id)
 
 
@@ -401,7 +379,7 @@ export async function updateWebsiteInfo(id: UUID, info: WebsiteInfo): Promise<Ba
                     WebsiteInfoList: tempWebsites
                 }
             }
-            await saveDB()
+            await saveDB(DB)
             return {
                 ok: true,
                 msg: "ok"
@@ -424,7 +402,7 @@ export async function updateWebsiteInfo(id: UUID, info: WebsiteInfo): Promise<Ba
 }
 export async function removeWebsite(id: UUID): Promise<BaseResult> {
     try {
-        await loadDB()
+        let DB = await loadDB()
         let tempWebsites: WebsiteInfo[] = []
         DB.environment_web.WebsiteInfoList.map((itm) => {
             if (itm.id != id) tempWebsites.push(itm)
@@ -435,7 +413,7 @@ export async function removeWebsite(id: UUID): Promise<BaseResult> {
                 WebsiteInfoList: tempWebsites
             }
         }
-        await saveDB()
+        await saveDB(DB)
         return {
             ok: true,
             msg: "ok"
@@ -451,7 +429,7 @@ export async function removeWebsite(id: UUID): Promise<BaseResult> {
 }
 export async function removeManyWebsite(ids: any[]): Promise<BaseResult> {
     try {
-        await loadDB()
+        let DB = await loadDB()
         let tempWebsites: WebsiteInfo[] = []
         DB.environment_web.WebsiteInfoList.map((itm) => {
             if (ids.indexOf(itm.id) < 0) tempWebsites.push(itm)
@@ -462,7 +440,7 @@ export async function removeManyWebsite(ids: any[]): Promise<BaseResult> {
                 WebsiteInfoList: tempWebsites
             }
         }
-        await saveDB()
+        await saveDB(DB)
         return {
             ok: true,
             msg: "ok"
@@ -476,6 +454,14 @@ export async function removeManyWebsite(ids: any[]): Promise<BaseResult> {
         }
     }
 }
+
+
+
+//================================DB==========================================
+
+
+
+
 
 (async () => {
     let dummyLang: environment_web_lang = {

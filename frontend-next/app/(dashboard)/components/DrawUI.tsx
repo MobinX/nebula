@@ -25,16 +25,16 @@ export const DrawUI = ({ ui, defaults= null }: { ui: UIInterface[],defaults?:any
                                 <input className="input w-full   input-ghost focus:outline-none bg-base-content/30 rounded-xl focus:bg-base-content/30 focus:border-transparent placeholder:text-base-content/50" type={elm.type} placeholder={elm.data} name={elm.name} defaultValue={defaults && defaults[elm.name] ? defaults[elm.name] :elm.value}  />
                             </div>
                         ) : (elm.type == "select" ? (
-                            <div className="flex gap-2 flex-wrap items-center ">
+                            <div className="flex gap-2 flex-wrap items-center " key={k}>
                                 <label className="label  text-lg" htmlFor={elm.name}>{elm.label}</label>
                                 <select className="select select-sm bg-base-content/30 rounded-md text-base-200 focus:outline-none" name={elm.name} defaultValue={defaults && defaults[elm.name] ? defaults[elm.name] :elm.value}  >
-                                    {elm.data.map((v: any, k: any) =>
-                                        <option key={k}>{v}</option>
+                                    {elm.data.map((v: any, ka: any) =>
+                                        <option key={ka}>{v}</option>
                                     )}
                                 </select>
                             </div>
                         ) : (elm.type == "checkbox" ? (
-                            <div className="flex flex-wrap items-center text-[1.125rem] h-fit ">
+                            <div className="flex flex-wrap items-center text-[1.125rem] h-fit " key={k}>
                                 <input className="checkbox bg-base-content/30 rounded-md " type="checkbox" name={elm.name}  defaultValue={defaults && defaults[elm.name] ? defaults[elm.name] :elm.value}  />
                                 <label className=" pl-3 " htmlFor={elm.name}>{elm.label}</label>
                             </div>

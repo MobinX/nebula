@@ -1,7 +1,7 @@
 "use server"
 
 import { UUID } from "crypto";
-import { getWebsiteById, getWebsits, WebsiteInfo } from "../../data/db";
+import { getWebsiteById, getWebsits, WebsiteInfo } from "../../db/webManager";
 
 export async function getWebsiteList():Promise<WebsiteInfo[] | null | undefined> {
     try {
