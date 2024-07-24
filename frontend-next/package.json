@@ -16,7 +16,9 @@
     "react": "^18",
     "react-dom": "^18",
     "react-syntax-highlighter": "^15.5.0",
-    "tsc": "^2.0.4"
+    "tsc": "^2.0.4",
+    "websocket": "^1.0.35",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
     "@types/node": "^20",
