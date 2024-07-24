@@ -5,6 +5,7 @@ import { useEffectOnce } from "@/app/(dashboard)/components/useEffectOnce"
 import Image from "next/image"
 import { FSContext } from "../components/FSManager"
 import { useRouter, useSearchParams } from "next/navigation"
+import Link from "next/link"
 
 
 const LoadingUI = () => (
@@ -14,14 +15,18 @@ const LoadingUI = () => (
 )
 
 export default function FileManager() {
-    const { openFolder, dirItems, loadingState, goBack, goNext, FsHistory } = useContext(FSContext)
+    const { openFolder, dirItems, loadingState, goBack, goNext, FsHistory,includeInHistory,setIncludeInHistory } = useContext(FSContext)
     console.log(FsHistory)
     const prams = useSearchParams()
     const location = prams.get("location")
-    async function loadOperations(path: string) {
-        await openFolder(path)
+    const router = useRouter()
+    async function loadOperations(path: string,includeHistory:boolean) {
+        await openFolder(path,includeHistory)
     }
-    useEffectOnce(() => { location ? loadOperations(location) : loadOperations("C:/Users/progr/DEV/nebula/frontend-next/"); })
+    
+    
+    console.log(location)
+    useEffect(() => { location ? loadOperations(location,includeInHistory) : router.push("/fileManager?location=C:/Users/progr/DEV/nebula/frontend-next/" )},[location])
     return (
         <>
             {dirItems.length > 0 && loadingState == "SUCCESS" &&
@@ -31,13 +36,13 @@ export default function FileManager() {
 
                     {dirItems.map((itm, k) => (
                         itm.isFolder ? (
-                            <div className="btn btn-ghost btn-lg flex-nowrap h-fit w-fit flex flex-col items-center justify-center gap-1 p-3 min-h-[auto]" key={k} onClick={async () => { itm.isFolder ? await openFolder(itm.parentPath + "/" + itm.name) : "" }} aria-description={itm.name}>
+                            <Link href={"/fileManager?location="+itm.parentPath + "/" + itm.name} className="btn btn-ghost btn-lg flex-nowrap h-fit w-fit flex flex-col items-center justify-center gap-1 p-3 min-h-[auto]" key={k}  aria-description={itm.name} onClick={()=> setIncludeInHistory(true)}>
                                 <Image className="w-20 h-20 md:w-[5.5rem] md:h-[5.5rem]" alt={itm.name} src={itm.iconName} width={32} height={32} />
                                 <p className="text-sm loa">{itm.name}</p>
-                            </div>
+                            </Link>
                         ) :
                             (
-                                <div className="btn btn-ghost btn-lg flex-nowrap h-fit w-fit flex flex-col items-center justify-center gap-1 p-3 min-h-[auto]" key={k} onClick={async () => { itm.isFolder ? await openFolder(itm.parentPath + "/" + itm.name) : "" }} aria-description={itm.name}>
+                                <div className="btn btn-ghost btn-lg flex-nowrap h-fit w-fit flex flex-col items-center justify-center gap-1 p-3 min-h-[auto]" key={k}  aria-description={itm.name}>
                                     <Image className="w-20 h-20 md:w-[5.5rem] md:h-[5.5rem]" alt={itm.name} src={itm.iconName} width={32} height={32} />
                                     <p className="text-sm loa">{itm.name}</p>
                                 </div>

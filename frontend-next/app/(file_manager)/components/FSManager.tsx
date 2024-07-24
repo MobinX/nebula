@@ -1,6 +1,7 @@
 "use client"
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useEffect, useReducer, useState } from "react";
 import { directoryItemType, getDir } from "../actions/fsActions";
+import { useRouter, useSearchParams } from "next/navigation"
 
 export const FSContext = createContext<{
     FsHistory: string[]
@@ -8,12 +9,14 @@ export const FSContext = createContext<{
     currentPath: string,
     goBack: () => Promise<void>
     goNext: () => Promise<void>
-    openFolder: (path: string, includeInhistory?: boolean) => Promise<void>
+    openFolder: (path: string, includeinhistory?: boolean) => Promise<void>
     loadingState: "SUCCESS" | "LOADING" | "FAILED"
     errorMsg: string
     presentHistoryIndex: number
     canGoBack: boolean
     canGoNext: boolean
+    includeInHistory:boolean
+    setIncludeInHistory: any
 
 }>({
     FsHistory: [],
@@ -22,11 +25,13 @@ export const FSContext = createContext<{
     loadingState: "LOADING",
     goBack: async () => { },
     goNext: async () => { },
-    openFolder: async (path: string, includeInhistory = true) => { },
+    openFolder: async (path: string, includeinhistory = true) => { },
     errorMsg: "",
     canGoBack: false,
     canGoNext: false,
-    presentHistoryIndex: 0
+    presentHistoryIndex: 0,
+    includeInHistory:true,
+    setIncludeInHistory:()=>{}
 
 })
 
@@ -39,7 +44,9 @@ export const FSManager = ({ children }: { children: ReactNode }) => {
     const [presentHistoryIndex, setPresentHistoryIndex] = useState<number>(0)
     const [canGoBack, setCanGoBack] = useState(false)
     const [canGoNext, setCanGoNext] = useState(false)
+    const [includeInHistory,setIncludeInHistory] = useState(true)
 
+    const router = useRouter();
 
     useEffect(() => setPresentHistoryIndex(FsHistory.length - 1), [FsHistory])
     useEffect(() => {
@@ -59,7 +66,7 @@ export const FSManager = ({ children }: { children: ReactNode }) => {
 
     }, [presentHistoryIndex])
 
-    const openFolder = async (path: string, includeInhistory = true) => {
+    const openFolder = async (path: string, includeinhistory = true) => {
         try {
             setLaodingState("LOADING")
             let itm = await getDir(path)
@@ -67,7 +74,7 @@ export const FSManager = ({ children }: { children: ReactNode }) => {
             if (typeof itm != "string") {
                 setDirItems(itm);
                 setLaodingState("SUCCESS");
-                if (includeInhistory) {
+                if (includeinhistory) {
                     if (FsHistory.length > 0) {
                         let tmpHistory: any[] = []
                         for (let i = 0; i <= (presentHistoryIndex); i++) {
@@ -97,17 +104,10 @@ export const FSManager = ({ children }: { children: ReactNode }) => {
         if (canGoBack) {
             try {
                 setLaodingState("LOADING")
-                let itm = await getDir(FsHistory[presentHistoryIndex - 1])
-                console.log(itm)
-                if (typeof itm != "string") {
-                    setDirItems(itm);
-                    setLaodingState("SUCCESS");
-                    setPresentHistoryIndex(presentHistoryIndex - 1)
-                }
-                else {
-                    setErrorMsg(itm);
-                    setLaodingState("FAILED")
-                }
+                setIncludeInHistory(false)
+                router.back()
+                setPresentHistoryIndex(presentHistoryIndex - 1)
+                
             } catch (error) {
                 setErrorMsg("Something went wrong, Please try again")
                 setLaodingState("FAILED")
@@ -118,17 +118,12 @@ export const FSManager = ({ children }: { children: ReactNode }) => {
         if (canGoNext) {
             try {
                 setLaodingState("LOADING")
-                let itm = await getDir(FsHistory[presentHistoryIndex + 1])
-                console.log(itm)
-                if (typeof itm != "string") {
-                    setDirItems(itm);
-                    setLaodingState("SUCCESS");
-                    setPresentHistoryIndex(presentHistoryIndex + 1)
-                }
-                else {
-                    setErrorMsg(itm);
-                    setLaodingState("FAILED")
-                }
+                setLaodingState("LOADING")
+                setIncludeInHistory(false)
+                router.forward()
+                setPresentHistoryIndex(presentHistoryIndex + 1)
+                
+                
             } catch (error) {
                 setErrorMsg("Something went wrong, Please try again")
                 setLaodingState("FAILED")
@@ -137,7 +132,7 @@ export const FSManager = ({ children }: { children: ReactNode }) => {
     }
 
     return (
-        <FSContext.Provider value={{ FsHistory, canGoBack, canGoNext, currentPath, dirItems, errorMsg, goBack, goNext, loadingState, openFolder, presentHistoryIndex }} >
+        <FSContext.Provider value={{ FsHistory, canGoBack, canGoNext, currentPath, dirItems, errorMsg, goBack, goNext, loadingState, openFolder, presentHistoryIndex,includeInHistory,setIncludeInHistory }} >
             {children}
         </FSContext.Provider>
     )
